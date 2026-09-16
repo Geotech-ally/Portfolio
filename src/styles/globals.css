@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   DESIGN SYSTEM — "Signal & Schematic"
+   Visual language borrowed from instrument panels, network schematics and
+   monitoring readouts: precise, quiet, left-aligned, annotated with real
+   metadata rather than decorative flourish. Built for a Full-Stack
+   Developer + Cybersecurity Analyst identity — engineering first, security
+   is expressed through structure and content, not neon clichés.
+   ========================================================================== */
+
+@theme {
+  /* ---- Typography ---- */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ---- Layout ---- */
+  --container-width: 72rem;
+  --breakpoint-xs: 22.5rem;
+
+  /* ---- Radius scale (used sparingly — see design principles) ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+
+  /* ---- Motion ---- */
+  --ease-signal: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+}
+
+/* --------------------------------------------------------------------------
+   Color tokens — semantic, theme-aware. Dark is the default identity
+   (instrument-panel ink); light is a genuine second theme, not an
+   afterthought, tuned to the same hue family.
+   -------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  /* Core surfaces */
+  --background: #0f1216;      /* ink */
+  --background-raised: #171b21; /* surface, one step up */
+  --background-sunken: #0a0c0f;
+
+  /* Text */
+  --foreground: #e7e7e2;
+  --foreground-muted: #9a9fa6;
+  --foreground-faint: #5c6169;
+
+  /* Borders / dividers (hairlines, not shadows) */
+  --border: #262b32;
+  --border-strong: #363c45;
+
+  /* Brand */
+  --primary: #e1a34a;         /* signal — amber dial */
+  --primary-foreground: #14171b;
+  --secondary: #43c6b4;       /* current — cold teal, used for security context */
+  --secondary-foreground: #0a0c0f;
+
+  /* Status */
+  --success: #4fae72;
+  --warning: #e1a34a;
+  --danger: #e2564f;
+  --info: #43c6b4;
+
+  /* Card (used sparingly — see component notes) */
+  --card: #171b21;
+  --card-foreground: #e7e7e2;
+
+  /* Ring / focus */
+  --ring: #e1a34a;
+
+  /* Shadows — restrained, used only for true elevation (menus, dialogs) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  --z-nav: 40;
+  --z-overlay: 50;
+  --z-toast: 60;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f5f6f4;
+  --background-raised: #ffffff;
+  --background-sunken: #eceeea;
+
+  --foreground: #14171b;
+  --foreground-muted: #565c64;
+  --foreground-faint: #8a8f96;
+
+  --border: #dde0dc;
+  --border-strong: #c7cbc5;
+
+  --primary: #b9781f;
+  --primary-foreground: #ffffff;
+  --secondary: #1f8f7d;
+  --secondary-foreground: #ffffff;
+
+  --success: #2f8a52;
+  --warning: #b9781f;
+  --danger: #c8433c;
+  --info: #1f8f7d;
+
+  --card: #ffffff;
+  --card-foreground: #14171b;
+
+  --ring: #b9781f;
+
+  --shadow-sm: 0 1px 2px rgba(20, 23, 27, 0.06);
+  --shadow-md: 0 4px 16px rgba(20, 23, 27, 0.08);
+  --shadow-lg: 0 12px 32px rgba(20, 23, 27, 0.12);
+}
+
+/* Map tokens into Tailwind's theme so utilities like bg-background work */
+@theme inline {
+  --color-background: var(--background);
+  --color-background-raised: var(--background-raised);
+  --color-background-sunken: var(--background-sunken);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-faint: var(--foreground-faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-ring: var(--ring);
+}
+
+/* --------------------------------------------------------------------------
+   Base / reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Custom scrollbar, kept subtle */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   Typography scale — one sans family for everything, monospace reserved
+   for technical/metadata content only (per design brief, not decoration).
+   -------------------------------------------------------------------------- */
+.text-display {
+  font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.text-heading-lg {
+  font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.text-heading-md {
+  font-size: 1.375rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+.text-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: var(--foreground-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Schematic spine — the recurring structural device: a hairline rule with
+   tick marks used to separate major sections, echoing a ruler / timeline.
+   Applied deliberately (sections are sequential reading order), not on
+   every card.
+   -------------------------------------------------------------------------- */
+.schematic-rule {
+  position: relative;
+  border-top: 1px solid var(--border);
+}
+.schematic-rule::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   Motion — reduced-motion respected globally.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Minimal markdown content styling for blog posts / security writeups.
+   -------------------------------------------------------------------------- */
+.prose-content h1,
+.prose-content h2,
+.prose-content h3 {
+  color: var(--foreground);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+.prose-content h2 { font-size: 1.375rem; }
+.prose-content h3 { font-size: 1.125rem; }
+.prose-content p { margin-bottom: 1.1em; }
+.prose-content ul,
+.prose-content ol { margin: 1em 0 1.1em 1.25em; }
+.prose-content li { margin-bottom: 0.4em; }
+.prose-content a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.prose-content code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--background-raised);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+}
+.prose-content pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--background-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1em;
+  overflow-x: auto;
+  margin-bottom: 1.2em;
+}
+.prose-content pre code {
+  background: none;
+  padding: 0;
+}
+.prose-content blockquote {
+  border-left: 2px solid var(--primary);
+  padding-left: 1em;
+  color: var(--foreground-muted);
+  font-style: italic;
+  margin: 1.2em 0;
+}
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.2em;
+  font-size: 0.9em;
+}
+.prose-content th,
+.prose-content td {
+  border: 1px solid var(--border);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.fade-up {
+  animation: fadeUp var(--duration-slow) var(--ease-signal) both;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
