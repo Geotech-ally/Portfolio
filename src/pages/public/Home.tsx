@@ -26,19 +26,20 @@ export default function Home() {
       <section className="border-b border-border">
         <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-[1.3fr_1fr] lg:items-start">
           <div className="fade-up">
+            <p className="text-meta mb-4">Geoffrey Akoo</p>
             <h1 className="text-display text-foreground">
               Full-Stack Developer
               <br />
-              &amp; Cybersecurity Analyst
+              · Cybersecurity Analyst
             </h1>
             <p className="text-body mt-6 text-foreground-muted">
               {profile?.short_bio ??
-                "I build web applications and network infrastructure, and I approach both with a security-first mindset — from Lodwar and Nakuru, Kenya."}
+                "I build secure, scalable web applications and cybersecurity-focused digital systems for teams that need dependable software and thoughtful security."}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <LinkButton to="/projects">View My Work</LinkButton>
-              <LinkButton to="/contact" variant="secondary">Let&rsquo;s Work Together</LinkButton>
-              <LinkButton to="/security-lab" variant="ghost">Explore Security Lab</LinkButton>
+              <LinkButton to="/projects">View Projects</LinkButton>
+              <LinkButton to="/contact" variant="secondary">Contact Me</LinkButton>
+              <LinkButton to="/resume" variant="ghost">View Resume</LinkButton>
             </div>
             <div className="mt-8 flex items-center gap-4">
               {profile?.github_url ? (

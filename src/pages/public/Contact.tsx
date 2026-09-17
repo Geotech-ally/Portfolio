@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Section, SectionHeading } from "@/components/layout/Section";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const honeypotRef = useRef<HTMLInputElement>(null);
+  const [honeypotValue, setHoneypotValue] = useState("");
   const {
     register,
     handleSubmit,
@@ -18,14 +18,10 @@ export default function Contact() {
 
   async function onSubmit(values: ContactMessageInput) {
     setStatus("idle");
-    // Honeypot: a field real users never see or fill. If it has a value,
-    // silently drop the submission (pretend success) rather than telling a
-    // bot its request was rejected. Real rate limiting still happens
-    // server-side (see docs/SECURITY.md) since a client check like this
-    // can always be bypassed.
-    if (honeypotRef.current?.value) {
+    if (honeypotValue) {
       setStatus("success");
       reset();
+      setHoneypotValue("");
       return;
     }
     try {
@@ -33,6 +29,7 @@ export default function Contact() {
       trackEvent("contact_submission");
       setStatus("success");
       reset();
+      setHoneypotValue("");
     } catch {
       setStatus("error");
     }
@@ -43,10 +40,17 @@ export default function Contact() {
       <SectionHeading eyebrow="Get in touch" title="Contact" description="Tell me a bit about what you're working on — I read every message." />
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="max-w-xl space-y-5">
-        {/* Honeypot field, visually and semantically hidden from real users/assistive tech. */}
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <label htmlFor="company">Leave this field empty</label>
-          <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" ref={honeypotRef} />
+          <input
+            id="company"
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypotValue}
+            onChange={(event) => setHoneypotValue(event.target.value)}
+          />
         </div>
 
         <div>
@@ -76,6 +80,19 @@ export default function Contact() {
         </div>
 
         <div>
+          <label htmlFor="subject" className="mb-1.5 block text-sm text-foreground">Subject</label>
+          <input
+            id="subject"
+            type="text"
+            className="w-full rounded-md border border-border-strong bg-background-raised px-3 py-2.5 text-sm outline-none focus-visible:border-primary"
+            aria-invalid={!!errors.subject}
+            aria-describedby={errors.subject ? "subject-error" : undefined}
+            {...register("subject")}
+          />
+          {errors.subject ? <p id="subject-error" role="alert" className="mt-1 text-sm text-danger">{errors.subject.message}</p> : null}
+        </div>
+
+        <div>
           <label htmlFor="message" className="mb-1.5 block text-sm text-foreground">Message</label>
           <textarea
             id="message"
@@ -93,7 +110,7 @@ export default function Contact() {
         </Button>
 
         {status === "success" ? (
-          <p role="status" className="text-sm text-success">Message sent — thank you, I'll reply soon.</p>
+          <p role="status" className="text-sm text-success">Message sent successfully. I&apos;ll get back to you as soon as possible.</p>
         ) : null}
         {status === "error" ? (
           <p role="alert" className="text-sm text-danger">Something went wrong sending your message. Please try again.</p>

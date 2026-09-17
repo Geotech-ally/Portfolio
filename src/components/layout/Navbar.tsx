@@ -6,12 +6,11 @@ import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
+  { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/skills", label: "Skills" },
   { to: "/projects", label: "Projects" },
-  { to: "/security-lab", label: "Security Lab" },
   { to: "/blog", label: "Blog" },
-  { to: "/experience", label: "Experience" },
   { to: "/contact", label: "Contact" },
 ];
 

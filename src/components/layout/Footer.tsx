@@ -15,17 +15,19 @@ export function Footer() {
           <p className="text-heading-md text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</p>
           <p className="text-meta mt-2">{profile?.professional_title ?? "Full-Stack Developer & Cybersecurity Analyst"}</p>
           <p className="text-body mt-4 text-sm text-foreground-muted">
-            Building reliable software and thinking about how it fails, from the first line of code.
+            I build secure, practical systems and web applications with a clear focus on reliability, maintainability, and good engineering decisions.
           </p>
         </div>
 
         <div>
           <p className="text-meta mb-3 text-foreground">Navigate</p>
           <ul className="space-y-2 text-sm text-foreground-muted">
+            <li><Link to="/" className="hover:text-foreground">Home</Link></li>
+            <li><Link to="/about" className="hover:text-foreground">About</Link></li>
+            <li><Link to="/skills" className="hover:text-foreground">Skills</Link></li>
             <li><Link to="/projects" className="hover:text-foreground">Projects</Link></li>
-            <li><Link to="/security-lab" className="hover:text-foreground">Security Lab</Link></li>
             <li><Link to="/blog" className="hover:text-foreground">Blog</Link></li>
-            <li><Link to="/resume" className="hover:text-foreground">Resume</Link></li>
+            <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
           </ul>
         </div>
 
