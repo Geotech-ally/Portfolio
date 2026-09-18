@@ -86,18 +86,13 @@ tuned for contrast and the app respects `prefers-color-scheme` and
 
 ## Status
 
-Working: design system, routing with code splitting, all public pages wired
-to live queries with loading/empty/error states, contact form with
-validation, admin login and dashboard, the full database schema, RLS
-policies, and storage buckets.
+The portfolio includes a production-oriented frontend, public content pages,
+admin authentication flow, database schema, RLS policies, and storage
+configuration. Before publishing live content, verify each project, blog post,
+certification, and resume link against the actual source material.
 
-Not yet built: admin CRUD forms (the tables, policies, and service functions
-are ready to wire up), rate limiting on the contact form, the newsletter
-unsubscribe Edge Function, audit-log triggers, and automated tests. See the
-Remaining Work section of [`docs/SECURITY.md`](docs/SECURITY.md).
-
-Seeded projects are drafts containing `TODO:` markers and will not appear
-publicly until you replace them with verified content and publish.
+Public content remains gated by the database status flags so unpublished items
+stay out of the live site until they are reviewed and published.
 
 ## Docs
 

@@ -13,9 +13,9 @@ export function Footer() {
       <Container className="grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="text-heading-md text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</p>
-          <p className="text-meta mt-2">{profile?.professional_title ?? "Full-Stack Developer & Cybersecurity Analyst"}</p>
+          <p className="text-meta mt-2">{profile?.professional_title ?? "Full-Stack Developer · Cybersecurity Analyst"}</p>
           <p className="text-body mt-4 text-sm text-foreground-muted">
-            I build secure, practical systems and web applications with a clear focus on reliability, maintainability, and good engineering decisions.
+            I build secure, practical systems and web applications with a clear focus on reliability, maintainability and sound engineering decisions.
           </p>
         </div>
 

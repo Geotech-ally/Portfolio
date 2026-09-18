@@ -46,8 +46,8 @@ by design.
    unique password.
 2. Copy the new user's UUID.
 3. Open `supabase/seed.sql`, replace
-   `00000000-0000-0000-0000-000000000000` with that UUID, and fill in the two
-   `TODO` fields (your public contact email and LinkedIn URL).
+   `00000000-0000-0000-0000-000000000000` with that UUID, and add your public
+   contact email and LinkedIn profile URL in the seed data.
 4. Run the seed file in the SQL Editor.
 
 Verify it worked:
@@ -143,7 +143,7 @@ blocks Supabase will break every page silently.
 
 ## Before you publish content
 
-- Replace every `TODO:` in the seeded projects with verified information.
+- Replace the seeded project metadata with verified information before publishing.
 - Confirm the certifications on the About page (issuer, date, credential URL)
   or remove them.
 - Upload your resume PDF to the `resume` bucket and set `profiles.resume_url`

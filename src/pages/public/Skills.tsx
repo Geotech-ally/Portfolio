@@ -2,8 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Section, SectionHeading } from "@/components/layout/Section";
 import { listSkillCategories } from "@/services/skills.service";
 import { AsyncSection } from "@/components/shared/AsyncStates";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function Skills() {
+  usePageMetadata({
+    title: "Skills | Geoffrey Akoo",
+    description: "Skills and technical capabilities of Geoffrey Akoo across frontend, backend, databases, infrastructure and cybersecurity.",
+    path: "/skills",
+  });
+
   const { data, isLoading, isError } = useQuery({ queryKey: ["skills"], queryFn: listSkillCategories });
 
   return (
@@ -11,7 +18,7 @@ export default function Skills() {
       <SectionHeading
         eyebrow="Capabilities"
         title="Skills"
-        description="Grouped by area, not ranked by arbitrary percentages — these reflect where I actively work, as a self-assessment rather than an objective measure."
+        description="Technical capability areas built around secure systems, full-stack product work and practical operations."
       />
       <AsyncSection
         isLoading={isLoading}

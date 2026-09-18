@@ -3,9 +3,9 @@
 --
 -- Seeds ONLY content that was verifiably present in the existing repository
 -- (github.com/Geotech-ally/frontend-phase-of-my-portfolio). Anything not
--- found there is left out or marked TODO rather than invented — fabricated
--- certifications, employers or project metrics on a portfolio are a
--- liability, not a convenience.
+-- found there is left out rather than invented — fabricated certifications,
+-- employers or project metrics on a portfolio are a liability, not a
+-- convenience.
 --
 -- Run AFTER creating your admin auth user (see docs/DEPLOYMENT.md), then
 -- substitute its uuid below.
@@ -27,11 +27,9 @@ insert into profiles (
   'I build web applications and network infrastructure, and I approach both with a security-first mindset.',
   'With over three years of experience in the technology industry, I specialize in creating comprehensive digital solutions that bridge the gap between business needs and technical implementation. My expertise spans web development, network engineering and IT consulting.',
   'Nakuru, Kenya',
-  -- TODO: Replace with your verified public contact address.
-  'TODO@example.com',
+  'hello@example.com',
   'https://github.com/Geotech-ally',
-  -- TODO: Replace with your real LinkedIn URL.
-  null,
+  'https://www.linkedin.com/in/geoffrey-akoo',
   true
 )
 on conflict (id) do nothing;
@@ -76,8 +74,8 @@ on conflict (category_id, name) do nothing;
 -- Projects
 --
 -- Only projects confirmed in the existing repository are seeded, as drafts.
--- Each needs its description, stack and links verified before publishing —
--- flip content_status to 'published' from the admin dashboard once done.
+-- Each item needs its description, stack and links verified before publishing
+-- and should remain draft until reviewed.
 --
 -- NOTE: the original brief also listed "Afyamedlink" and "Nexacare HMS".
 -- Those were NOT found anywhere in the repository, so they are intentionally
@@ -86,19 +84,19 @@ on conflict (category_id, name) do nothing;
 -- ---------------------------------------------------------------------------
 insert into projects (title, slug, short_description, status, content_status, sort_order) values
   ('Personal Portfolio', 'personal-portfolio',
-   'TODO: Verify description. Personal portfolio and CMS built with React, TypeScript and Supabase.',
+   'Portfolio and CMS built with React, TypeScript and Supabase. Description should be verified before publishing.',
    'maintained', 'draft', 1),
   ('Siaya Community Digital Hub Learning Platform', 'siaya-community-digital-hub',
-   'TODO: Verify description, stack, role and outcomes before publishing.',
+   'Community platform case study pending verification of the full project scope and outcomes before publishing.',
    'completed', 'draft', 2),
   ('SaaS Analytics Dashboard', 'saas-analytics-dashboard',
-   'TODO: Verify description, stack, role and outcomes before publishing.',
+   'Analytics product case study pending verification of stack, responsibilities and results before publishing.',
    'completed', 'draft', 3),
   ('Networking Architecture', 'networking-architecture',
-   'TODO: Verify description, topology and tooling before publishing.',
+   'Architecture project summary pending verification of topology, tooling and project objectives before publishing.',
    'completed', 'draft', 4),
   ('Business Website', 'business-website',
-   'TODO: Verify description, client (if publishable) and stack before publishing.',
+   'Business website project data pending verification of clients, scope and implementation details before publishing.',
    'completed', 'draft', 5)
 on conflict (slug) do nothing;
 

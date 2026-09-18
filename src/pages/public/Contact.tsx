@@ -5,8 +5,15 @@ import { Section, SectionHeading } from "@/components/layout/Section";
 import { contactMessageSchema, submitContactMessage, type ContactMessageInput } from "@/services/contact.service";
 import { trackEvent } from "@/services/analytics.service";
 import { Button } from "@/components/ui/button";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function Contact() {
+  usePageMetadata({
+    title: "Contact | Geoffrey Akoo",
+    description: "Contact Geoffrey Akoo for product, engineering and cybersecurity opportunities.",
+    path: "/contact",
+  });
+
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [honeypotValue, setHoneypotValue] = useState("");
   const {
@@ -37,7 +44,7 @@ export default function Contact() {
 
   return (
     <Section>
-      <SectionHeading eyebrow="Get in touch" title="Contact" description="Tell me a bit about what you're working on — I read every message." />
+      <SectionHeading eyebrow="Get in touch" title="Contact" description="Tell me a bit about what you're building, and I’ll reply as soon as I can." />
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="max-w-xl space-y-5">
         <div className="absolute -left-[9999px]" aria-hidden="true">

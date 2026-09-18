@@ -2,7 +2,7 @@ import { lazy, Suspense, type ReactNode } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "@/components/layout/RootLayout";
 import { AdminLayout } from "@/pages/admin/AdminLayout";
-import { AdminComingSoon } from "@/pages/admin/AdminComingSoon";
+import { AdminUnavailable } from "@/pages/admin/AdminUnavailable";
 import { PageSkeleton } from "@/components/shared/AsyncStates";
 
 // Home is eagerly loaded — it's the most common entry point and lazy-loading
@@ -60,10 +60,10 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: page(<AdminDashboard />) },
-      { path: "projects", element: <AdminComingSoon title="Projects" /> },
-      { path: "blog", element: <AdminComingSoon title="Blog" /> },
-      { path: "security-lab", element: <AdminComingSoon title="Security Lab" /> },
-      { path: "messages", element: <AdminComingSoon title="Messages" /> },
+      { path: "projects", element: <AdminUnavailable title="Projects" /> },
+      { path: "blog", element: <AdminUnavailable title="Blog" /> },
+      { path: "security-lab", element: <AdminUnavailable title="Security Lab" /> },
+      { path: "messages", element: <AdminUnavailable title="Messages" /> },
     ],
   },
 ]);

@@ -6,6 +6,7 @@ import { getPostBySlug } from "@/services/blog.service";
 import { Markdown } from "@/components/shared/Markdown";
 import { LoadingGrid, ErrorState } from "@/components/shared/AsyncStates";
 import { trackEvent } from "@/services/analytics.service";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function BlogDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -18,6 +19,12 @@ export default function BlogDetail() {
   useEffect(() => {
     if (post) trackEvent("blog_view", { slug: post.slug });
   }, [post]);
+
+  usePageMetadata({
+    title: post ? `${post.title} | Geoffrey Akoo` : "Blog | Geoffrey Akoo",
+    description: post ? post.excerpt : "Technical articles and notes from Geoffrey Akoo.",
+    path: post ? `/blog/${post.slug}` : "/blog",
+  });
 
   return (
     <Section>

@@ -4,8 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Section, SectionHeading } from "@/components/layout/Section";
 import { listPublishedPosts } from "@/services/blog.service";
 import { AsyncSection } from "@/components/shared/AsyncStates";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function Blog() {
+  usePageMetadata({
+    title: "Blog | Geoffrey Akoo",
+    description: "Technical writing on software engineering, cybersecurity and systems thinking by Geoffrey Akoo.",
+    path: "/blog",
+  });
+
   const [page, setPage] = useState(0);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["blog-posts", page],
@@ -14,7 +21,7 @@ export default function Blog() {
 
   return (
     <Section>
-      <SectionHeading eyebrow="Writing" title="Blog" description="Notes on building software, networks and habits that hold up under pressure." />
+      <SectionHeading eyebrow="Writing" title="Blog" description="Technical notes on software engineering, security, networking and systems thinking." />
       <AsyncSection
         isLoading={isLoading}
         isError={isError}

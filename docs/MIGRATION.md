@@ -41,7 +41,8 @@ Real content was extracted from the old HTML rather than rewritten:
 - **Skills** — seeded from technologies actually referenced in the old repo.
 - **Projects** — `Personal Portfolio`, `Siaya Community Digital Hub Learning
   Platform`, `SaaS Analytics Dashboard`, `Networking Architecture`, and
-  `Business Website` are seeded **as drafts with `TODO:` descriptions**.
+  `Business Website` are seeded as drafts pending verification before public
+  publishing.
 
 ### Two projects were deliberately NOT migrated
 
@@ -50,18 +51,17 @@ preserve. Neither appears anywhere in the repository. Rather than invent
 descriptions, stacks, and outcomes for them, they were left out. Add them
 through the admin UI with real details.
 
-For the same reason, every seeded project carries a `TODO:` marker and
-`content_status = 'draft'`. Nothing reaches the public site until you fill in
-verified information and publish it. This is why an anonymous visitor
-currently sees zero projects — that is correct behavior, not a bug.
+For the same reason, every seeded project remains `content_status = 'draft'` until
+verified information is added and published. This keeps anonymous visitors from seeing
+unfinished entries before they are reviewed.
 
 ### Certifications
 
 The old About page listed "Intro to Cybersecurity", "Intro to IoT", and
 "Python Programming" certificates. These are rendered on the About page as
-migrated but are marked `TODO` because the issuer, dates, and credential URLs
-were not in the repository. Verify before publishing — unverifiable
-certifications on a portfolio are a liability with technical recruiters.
+migrated, but the issuer, dates, and credential URLs should be verified before
+publishing because unverifiable credentials are a liability with technical
+recruiters.
 
 ## What was intentionally dropped
 

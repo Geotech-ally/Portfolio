@@ -4,8 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Section, SectionHeading } from "@/components/layout/Section";
 import { listPublishedProjects } from "@/services/projects.service";
 import { AsyncSection } from "@/components/shared/AsyncStates";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function Projects() {
+  usePageMetadata({
+    title: "Projects | Geoffrey Akoo",
+    description: "Case studies and engineering work by Geoffrey Akoo, covering secure applications, healthcare systems, community platforms and portfolio engineering.",
+    path: "/projects",
+  });
+
   const { data, isLoading, isError } = useQuery({ queryKey: ["projects"], queryFn: () => listPublishedProjects() });
 
   return (
@@ -13,7 +20,7 @@ export default function Projects() {
       <SectionHeading
         eyebrow="Case studies"
         title="Projects"
-        description="Web development, network engineering and IT consulting work. Each entry links to a full technical write-up."
+        description="Selected work spanning secure web applications, healthcare management systems, digital community platforms and portfolio engineering."
       />
       <AsyncSection
         isLoading={isLoading}

@@ -8,6 +8,7 @@ import { getPublicUrl, STORAGE_BUCKETS } from "@/lib/storage";
 import { LoadingGrid, ErrorState } from "@/components/shared/AsyncStates";
 import { trackEvent } from "@/services/analytics.service";
 import { useEffect } from "react";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -20,6 +21,12 @@ export default function ProjectDetail() {
   useEffect(() => {
     if (project) trackEvent("project_view", { slug: project.slug });
   }, [project]);
+
+  usePageMetadata({
+    title: project ? `${project.title} | Geoffrey Akoo` : "Project | Geoffrey Akoo",
+    description: project ? project.short_description : "Project detail page for Geoffrey Akoo's engineering work.",
+    path: project ? `/projects/${project.slug}` : "/projects",
+  });
 
   if (!slug) return <Navigate to="/projects" replace />;
 

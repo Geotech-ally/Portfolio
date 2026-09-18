@@ -5,12 +5,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  // Fail loudly in dev rather than silently making unauthenticated requests
-  // to `undefined`. In production builds without env vars this throws at
-  // startup, which is the correct behavior — never fall back to a hardcoded
-  // project.
-  // eslint-disable-next-line no-console
-  console.error(
+  throw new Error(
     "Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY. Copy .env.example to .env and fill in your Supabase project credentials."
   );
 }
@@ -21,8 +16,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
  * never reach the frontend bundle (see docs/SECURITY.md).
  */
 export const supabase = createClient<Database>(
-  supabaseUrl ?? "https://placeholder.supabase.co",
-  supabaseAnonKey ?? "placeholder-anon-key",
+  supabaseUrl,
+  supabaseAnonKey,
   {
     auth: {
       persistSession: true,

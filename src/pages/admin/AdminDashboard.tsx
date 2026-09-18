@@ -39,10 +39,7 @@ export default function AdminDashboard() {
         ))}
       </div>
       <div className="mt-10 rounded-lg border border-dashed border-border p-6 text-sm text-foreground-muted">
-        Full CRUD screens for projects, blog posts, security writeups, skills, experience,
-        certifications and site settings are the next phase of this build (Phase 7 in
-        docs/MIGRATION.md) — this overview reads live counts from Supabase now, but create/edit/delete
-        forms aren't wired up yet.
+        The admin overview is connected to live Supabase counts. Full CMS CRUD forms remain a follow-up implementation task before the admin workspace is considered complete.
       </div>
     </div>
   );
