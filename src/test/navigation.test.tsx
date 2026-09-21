@@ -4,7 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import About from "@/pages/public/About";
 
 describe("public navigation", () => {
-  it("shows the required six primary public tabs", () => {
+  it("shows the required six primary public tabs without supporting nav items", () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -19,6 +19,7 @@ describe("public navigation", () => {
     expect(screen.getByRole("link", { name: /contact/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /security lab/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /experience/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /resume/i })).not.toBeInTheDocument();
   });
 
   it("positions Geoffrey Akoo as a full-stack developer and cybersecurity analyst without placeholder copy", () => {
@@ -29,8 +30,7 @@ describe("public navigation", () => {
     );
 
     expect(screen.getByText(/geoffrey akoo/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/full-stack developer/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/cybersecurity analyst/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/full-stack developer \+ cybersecurity analyst/i).length).toBeGreaterThan(0);
     expect(screen.queryByText(/TODO:/i)).not.toBeInTheDocument();
   });
 });

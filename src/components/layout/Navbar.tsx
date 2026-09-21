@@ -35,7 +35,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <NavLink to="/" className="text-meta font-semibold tracking-tight text-foreground" onClick={() => setOpen(false)}>
-          geoffrey akoo
+          Geoffrey Akoo
         </NavLink>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
@@ -64,12 +64,6 @@ export function Navbar() {
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <NavLink
-            to="/resume"
-            className="rounded-md border border-border-strong px-4 py-2 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            Resume
-          </NavLink>
         </div>
 
         <button
@@ -109,9 +103,7 @@ export function Navbar() {
               </NavLink>
             ))}
             <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
-              <NavLink to="/resume" onClick={() => setOpen(false)} className="text-sm text-primary">
-                Resume
-              </NavLink>
+              <span className="text-sm text-foreground-muted">Menu</span>
               <button
                 type="button"
                 onClick={toggleTheme}

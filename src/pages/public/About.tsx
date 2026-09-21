@@ -1,72 +1,118 @@
 import { Section, SectionHeading } from "@/components/layout/Section";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { useProfile } from "@/hooks/useProfile";
 
 const PHILOSOPHY = [
   {
     title: "Understand",
-    body: "I start from the problem, the users and the constraints before deciding how to solve it.",
+    body: "I start with the problem, the users and the constraints before deciding how to solve it.",
   },
   {
     title: "Design",
-    body: "Good architecture reduces complexity and makes the system easier to extend and secure.",
+    body: "I shape the architecture around maintainability, clarity and the trade-offs that matter to the application.",
   },
   {
     title: "Build",
-    body: "I build practical systems with clean interfaces, reliable data flows and maintainable code.",
-  },
-  {
-    title: "Secure",
-    body: "Security is part of product quality, not a final step after deployment.",
+    body: "I build practical systems with clear interfaces, reliable data flows and code that is easy to extend.",
   },
   {
     title: "Test",
-    body: "I validate behavior early and keep quality checks aligned with the real system risks.",
+    body: "I validate behavior early so the solution remains reliable as requirements and conditions evolve.",
   },
   {
-    title: "Deploy",
-    body: "Deployment is a product decision as much as a technical one; operations and maintainability matter.",
+    title: "Secure",
+    body: "Security is part of product quality and is considered during design, implementation and operation.",
   },
-];
-
-const DETAILS = [
-  { label: "Professional identity", value: "Full-Stack Developer + Cybersecurity Analyst" },
-  { label: "Education", value: "BSc Information Communication Technology" },
-  { label: "Location", value: "Nakuru, Kenya" },
-  { label: "Languages", value: "English, Swahili" },
-  { label: "Availability", value: "Open for projects" },
+  {
+    title: "Improve",
+    body: "I review the result, tighten the weak points and refine the solution as I learn more about the system.",
+  },
 ];
 
 export default function About() {
+  const { data: profile } = useProfile();
+
   usePageMetadata({
     title: "About | Geoffrey Akoo",
-    description: "Professional profile for Geoffrey Akoo, a full-stack developer and cybersecurity analyst focused on secure systems, modern web engineering and practical security.",
+    description: "Professional profile for Geoffrey Akoo, a full-stack web developer and cybersecurity analyst focused on secure systems, modern web engineering and thoughtful application design.",
     path: "/about",
   });
+
+  const professionalTitle = profile?.professional_title ?? "Full-Stack Developer + Cybersecurity Analyst";
+  const introText = profile?.long_bio ?? profile?.short_bio ??
+    "I build software systems that connect user-facing experiences with reliable backend logic, secure data handling and practical security thinking.";
 
   return (
     <>
       <Section>
         <p className="text-meta mb-3">About</p>
-        <h1 className="text-heading-lg text-foreground">Geoffrey Akoo</h1>
-        <p className="text-body mt-4 max-w-2xl text-foreground-muted">
-          I am a full-stack developer and cybersecurity analyst focused on building secure, dependable digital systems. My work spans frontend engineering, backend services, database-driven applications, Linux environments and security-conscious application design.
-        </p>
+        <h1 className="text-heading-lg text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</h1>
+        <p className="text-meta mt-2 text-foreground-muted">{professionalTitle}</p>
+        <p className="text-body mt-6 max-w-3xl text-foreground-muted">{introText}</p>
       </Section>
 
       <Section divider>
-        <SectionHeading eyebrow="Professional profile" title="What I do" />
-        <div className="max-w-2xl space-y-4 text-body text-foreground-muted">
+        <SectionHeading eyebrow="Professional profile" title="Who I am" />
+        <div className="max-w-3xl space-y-4 text-body text-foreground-muted">
           <p>
-            I build modern web applications using React, TypeScript and related tooling, and I work across the stack to connect interfaces, APIs, data models and infrastructure with practical product goals.
+            I am Geoffrey Akoo, a Full-Stack Web Developer + Cybersecurity Analyst. My work sits at the intersection of product development and security-conscious engineering: I build web applications that are usable, maintainable and designed with risk awareness in mind.
           </p>
           <p>
-            My cybersecurity perspective shapes how I design systems: authentication, authorization, validation, secure storage, least privilege and careful operational defaults matter as much as the application itself.
+            I enjoy building software that connects interfaces, APIs, data models and system behavior into a single coherent product. My background in full-stack development is paired with a cybersecurity lens, which helps me think carefully about authentication, authorization, validation, secure data access and resilient design.
           </p>
         </div>
       </Section>
 
       <Section divider>
-        <SectionHeading eyebrow="Engineering philosophy" title="How I work" />
+        <SectionHeading eyebrow="What I do" title="Full-stack development and cybersecurity" />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-lg border border-border bg-background-raised p-6">
+            <p className="text-meta text-foreground">Full-Stack Web Development</p>
+            <p className="mt-3 text-body text-foreground-muted">
+              I work across the stack to build modern web applications, from frontend experiences and product flows to backend logic, API integrations and database-backed workflows.
+            </p>
+          </div>
+          <div className="rounded-lg border border-border bg-background-raised p-6">
+            <p className="text-meta text-foreground">Cybersecurity Analysis</p>
+            <p className="mt-3 text-body text-foreground-muted">
+              I apply a security mindset to the systems I build, thinking about access control, data handling, validation, secure API design and the broader system risks that shape reliable software.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section divider>
+        <SectionHeading eyebrow="Development focus" title="Where I work across the stack" />
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {[
+            "Frontend development",
+            "Backend development",
+            "API engineering",
+            "Database design and data access",
+            "Application architecture",
+            "Deployment and infrastructure awareness",
+          ].map((item) => (
+            <div key={item} className="border-t border-border-strong pt-4">
+              <p className="text-foreground">{item}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section divider>
+        <SectionHeading eyebrow="Security mindset" title="How cybersecurity shapes my work" />
+        <div className="max-w-3xl space-y-4 text-body text-foreground-muted">
+          <p>
+            Security is not treated as a separate layer added at the end of a project. It informs how I design software, how I validate input, how I handle data access and how I think about authentication, authorization, least privilege and secure defaults.
+          </p>
+          <p>
+            I pay attention to the practical details that matter in real systems: secure API design, defensive coding practices, application validation, tenant-aware access patterns where relevant, and OWASP-aware development habits. I do not assume that any system is automatically secure; I build with the right controls and continue improving as risks are identified.
+          </p>
+        </div>
+      </Section>
+
+      <Section divider>
+        <SectionHeading eyebrow="Technical approach" title="How I approach technical work" />
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {PHILOSOPHY.map((item) => (
             <div key={item.title} className="border-t border-border-strong pt-4">
@@ -78,35 +124,11 @@ export default function About() {
       </Section>
 
       <Section divider>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
-          <div>
-            <SectionHeading eyebrow="Background" title="Professional details" className="mb-6" />
-            <dl className="space-y-3 text-sm">
-              {DETAILS.map((d) => (
-                <div key={d.label} className="flex justify-between border-b border-border pb-2 gap-4">
-                  <dt className="text-foreground-muted">{d.label}</dt>
-                  <dd className="text-right text-foreground">{d.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div>
-            <SectionHeading eyebrow="Experience" title="Technical focus" className="mb-6" />
-            <ul className="space-y-4 text-sm">
-              <li>
-                <p className="text-foreground">Frontend engineering</p>
-                <p className="text-foreground-muted">User interfaces, product flows, responsive interfaces and design systems for web products.</p>
-              </li>
-              <li>
-                <p className="text-foreground">Backend engineering</p>
-                <p className="text-foreground-muted">API design, business logic, database integration and secure access patterns.</p>
-              </li>
-              <li>
-                <p className="text-foreground">Systems and security</p>
-                <p className="text-foreground-muted">Linux workflows, networking concepts, secure operations and risk-aware development practices.</p>
-              </li>
-            </ul>
-          </div>
+        <SectionHeading eyebrow="Professional direction" title="Where I’m headed" />
+        <div className="max-w-3xl text-body text-foreground-muted">
+          <p>
+            I am interested in building practical software systems that solve real problems and continuing to develop expertise across both full-stack engineering and cybersecurity. I value work that combines product thinking, secure design and technical craftsmanship, and I am motivated by systems that are useful, maintainable and resilient.
+          </p>
         </div>
       </Section>
     </>

@@ -1,128 +1,87 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, ArrowUpRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/layout/Section";
-import { contactMessageSchema, submitContactMessage, type ContactMessageInput } from "@/services/contact.service";
-import { trackEvent } from "@/services/analytics.service";
-import { Button } from "@/components/ui/button";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { useProfile } from "@/hooks/useProfile";
+import { GithubIcon, LinkedinIcon } from "@/components/shared/BrandIcons";
 
 export default function Contact() {
   usePageMetadata({
     title: "Contact | Geoffrey Akoo",
-    description: "Contact Geoffrey Akoo for product, engineering and cybersecurity opportunities.",
+    description: "Professional contact details for Geoffrey Akoo.",
     path: "/contact",
   });
 
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [honeypotValue, setHoneypotValue] = useState("");
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactMessageInput>({ resolver: zodResolver(contactMessageSchema) });
+  const { data: profile } = useProfile();
 
-  async function onSubmit(values: ContactMessageInput) {
-    setStatus("idle");
-    if (honeypotValue) {
-      setStatus("success");
-      reset();
-      setHoneypotValue("");
-      return;
-    }
-    try {
-      await submitContactMessage(values);
-      trackEvent("contact_submission");
-      setStatus("success");
-      reset();
-      setHoneypotValue("");
-    } catch {
-      setStatus("error");
-    }
-  }
+  const links = [
+    profile?.email
+      ? {
+          label: "Email",
+          href: `mailto:${profile.email}`,
+          value: profile.email,
+          icon: Mail,
+        }
+      : null,
+    profile?.github_url
+      ? {
+          label: "GitHub",
+          href: profile.github_url,
+          value: profile.github_url.replace(/^https?:\/\//, ""),
+          icon: GithubIcon,
+        }
+      : null,
+    profile?.linkedin_url
+      ? {
+          label: "LinkedIn",
+          href: profile.linkedin_url,
+          value: profile.linkedin_url.replace(/^https?:\/\//, ""),
+          icon: LinkedinIcon,
+        }
+      : null,
+  ].filter(Boolean) as Array<{
+    label: string;
+    href: string;
+    value: string;
+    icon: typeof Mail;
+  }>;
 
   return (
     <Section>
-      <SectionHeading eyebrow="Get in touch" title="Contact" description="Tell me a bit about what you're building, and I’ll reply as soon as I can." />
+      <SectionHeading
+        eyebrow="Get in touch"
+        title="Contact"
+        description="If you’d like to discuss a product, project, engineering challenge, or security-focused opportunity, here are the verified ways to reach Geoffrey Akoo."
+      />
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="max-w-xl space-y-5">
-        <div className="absolute -left-[9999px]" aria-hidden="true">
-          <label htmlFor="company">Leave this field empty</label>
-          <input
-            id="company"
-            name="company"
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            value={honeypotValue}
-            onChange={(event) => setHoneypotValue(event.target.value)}
-          />
+      <div className="max-w-4xl space-y-6">
+        <div className="rounded-2xl border border-border bg-background-raised p-6 md:p-8">
+          <p className="text-body text-foreground-muted">
+            I’m available for practical engineering work, technical collaboration, and professional conversations around software systems, secure product design, and platform development.
+          </p>
         </div>
 
-        <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm text-foreground">Name</label>
-          <input
-            id="name"
-            type="text"
-            className="w-full rounded-md border border-border-strong bg-background-raised px-3 py-2.5 text-sm outline-none focus-visible:border-primary"
-            aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "name-error" : undefined}
-            {...register("name")}
-          />
-          {errors.name ? <p id="name-error" role="alert" className="mt-1 text-sm text-danger">{errors.name.message}</p> : null}
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {links.map(({ label, href, value, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
+              className="group rounded-xl border border-border bg-background-raised p-5 transition-colors hover:border-primary"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-foreground">
+                  <Icon width={18} height={18} />
+                </div>
+                <ArrowUpRight size={16} className="text-foreground-faint transition-colors group-hover:text-primary" />
+              </div>
+
+              <p className="mt-4 text-meta text-foreground-faint">{label}</p>
+              <p className="mt-2 break-all text-body text-foreground">{value}</p>
+            </a>
+          ))}
         </div>
-
-        <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm text-foreground">Email</label>
-          <input
-            id="email"
-            type="email"
-            className="w-full rounded-md border border-border-strong bg-background-raised px-3 py-2.5 text-sm outline-none focus-visible:border-primary"
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "email-error" : undefined}
-            {...register("email")}
-          />
-          {errors.email ? <p id="email-error" role="alert" className="mt-1 text-sm text-danger">{errors.email.message}</p> : null}
-        </div>
-
-        <div>
-          <label htmlFor="subject" className="mb-1.5 block text-sm text-foreground">Subject</label>
-          <input
-            id="subject"
-            type="text"
-            className="w-full rounded-md border border-border-strong bg-background-raised px-3 py-2.5 text-sm outline-none focus-visible:border-primary"
-            aria-invalid={!!errors.subject}
-            aria-describedby={errors.subject ? "subject-error" : undefined}
-            {...register("subject")}
-          />
-          {errors.subject ? <p id="subject-error" role="alert" className="mt-1 text-sm text-danger">{errors.subject.message}</p> : null}
-        </div>
-
-        <div>
-          <label htmlFor="message" className="mb-1.5 block text-sm text-foreground">Message</label>
-          <textarea
-            id="message"
-            rows={6}
-            className="w-full rounded-md border border-border-strong bg-background-raised px-3 py-2.5 text-sm outline-none focus-visible:border-primary"
-            aria-invalid={!!errors.message}
-            aria-describedby={errors.message ? "message-error" : undefined}
-            {...register("message")}
-          />
-          {errors.message ? <p id="message-error" role="alert" className="mt-1 text-sm text-danger">{errors.message.message}</p> : null}
-        </div>
-
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Sending…" : "Send message"}
-        </Button>
-
-        {status === "success" ? (
-          <p role="status" className="text-sm text-success">Message sent successfully. I&apos;ll get back to you as soon as possible.</p>
-        ) : null}
-        {status === "error" ? (
-          <p role="alert" className="text-sm text-danger">Something went wrong sending your message. Please try again.</p>
-        ) : null}
-      </form>
+      </div>
     </Section>
   );
 }
