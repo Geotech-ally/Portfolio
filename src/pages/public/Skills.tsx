@@ -3,39 +3,9 @@ import { Section, SectionHeading } from "@/components/layout/Section";
 import { listSkillCategories } from "@/services/skills.service";
 import { AsyncSection } from "@/components/shared/AsyncStates";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { VERIFIED_SKILL_GROUPS } from "@/content/verified-content";
 
-const STATIC_SKILL_GROUPS = [
-  {
-    title: "Frontend Development",
-    description: "User-facing product work built with accessible and maintainable interfaces.",
-    technologies: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-  },
-  {
-    title: "Backend Development",
-    description: "Application logic, service layers and backend workflows that support product functionality.",
-    technologies: ["Node.js", "Python", "Flask"],
-  },
-  {
-    title: "Databases",
-    description: "Structured data modeling and application data access for reliable product systems.",
-    technologies: ["PostgreSQL", "SQLite"],
-  },
-  {
-    title: "APIs & Application Architecture",
-    description: "API design, integration and system patterns that connect user flows to backend services.",
-    technologies: ["REST API development", "API integration", "Authentication", "Authorization", "Backend service architecture", "Database-driven applications"],
-  },
-  {
-    title: "DevOps / Infrastructure",
-    description: "Operational awareness for deployment, environment setup and development workflows.",
-    technologies: ["Linux", "Git", "Deployment configuration", "Environment configuration"],
-  },
-  {
-    title: "Cybersecurity",
-    description: "Security-aware development rooted in application risk, access control and system review.",
-    technologies: ["Cybersecurity analysis", "Network security fundamentals", "OWASP Top 10", "Application security", "Authentication and authorization", "System hardening"],
-  },
-] as const;
+const STATIC_SKILL_GROUPS = VERIFIED_SKILL_GROUPS;
 
 const FALLBACK_SKILL_GROUPS = STATIC_SKILL_GROUPS.map((group) => ({
   title: group.title,
@@ -50,24 +20,24 @@ const getFallbackTechnologies = (title: string): string[] => {
 
 const PROJECT_CONTEXT = [
   {
-    title: "SaaS Analytics Dashboard",
-    summary: "Product-oriented web application work centered on secure data access, analytics workflows and a database-backed architecture.",
-    stack: ["React", "TypeScript", "PostgreSQL", "Secure application architecture"],
+    title: "DataLens — SaaS Analytics Platform",
+    summary: "Multi-tenant analytics work built around secure data access, RBAC, dataset processing, and reporting workflows.",
+    stack: ["Django", "FastAPI", "PostgreSQL", "JWT", "RBAC"],
   },
   {
-    title: "Siaya Community Digital Hub",
-    summary: "Community platform work that relies on modern web tooling, backend service patterns and data-driven features.",
-    stack: ["Modern frontend development", "Backend service patterns", "Database-driven features"],
+    title: "Siaya Community Digital Hub Learning Platform",
+    summary: "Learning platform work that combines a Next.js frontend, NestJS backend, and Prisma-backed data layer for course and user flows.",
+    stack: ["Next.js", "NestJS", "Prisma", "REST API", "Authentication"],
   },
   {
-    title: "Personal Portfolio",
+    title: "Portfolio",
     summary: "Portfolio and CMS implementation built for a modern web stack and secure content delivery patterns.",
     stack: ["React", "TypeScript", "Vite", "Supabase", "Tailwind CSS"],
   },
   {
-    title: "Networking Architecture",
-    summary: "Systems-oriented work that reinforces the relationship between application development and network-aware security thinking.",
-    stack: ["Linux", "Network security fundamentals", "Network architecture"],
+    title: "Health",
+    summary: "Healthcare system work spanning patient, doctor, finance, pharmacy, and operational workflows in a Django-based architecture.",
+    stack: ["Django", "DRF", "React", "Healthcare workflows", "API design"],
   },
 ];
 

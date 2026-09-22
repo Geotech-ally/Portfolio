@@ -57,10 +57,11 @@ export default function Home() {
   });
 
   const selectedProjects = [
-    "saas-analytics-dashboard",
-    "nexacare-hms",
+    "saas-analytics",
     "siaya-community-digital-hub",
-    "personal-portfolio",
+    "portfolio",
+    "health",
+    "smart-voting-system",
   ]
     .map((slug) => allProjects.find((project) => project.slug === slug))
     .filter((project): project is NonNullable<typeof project> => Boolean(project));

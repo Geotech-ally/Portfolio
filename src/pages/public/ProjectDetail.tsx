@@ -11,32 +11,50 @@ import { useEffect } from "react";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 
 const projectProfiles: Record<string, { category: string; architecture: string; security: string; role: string; outcome: string; lessons: string; challenge: string; }> = {
-  "saas-analytics-dashboard": {
+  "saas-analytics": {
     category: "SaaS / Analytics",
-    architecture: "Frontend → application API / business logic → PostgreSQL data layer → authentication, RBAC and supporting service integrations.",
-    security: "Authentication, authorization, role-based access controls, dataset isolation and secure access to application data are core system concerns for this type of product.",
-    role: "This project reflects full-stack product work spanning user experience, backend/API interaction, data handling and security-aware implementation.",
-    outcome: "This is presented as a portfolio case study for a SaaS-style analytics product and reflects the implementation patterns used for dashboard-heavy systems.",
-    lessons: "This work demonstrates product thinking, secure application architecture, dashboard UX and data-driven full-stack delivery.",
-    challenge: "The central product challenge is making operational data usable without losing clarity, structure or security controls across dashboard-driven workflows.",
+    architecture: "React frontend → Django REST Framework and FastAPI service layer → PostgreSQL data storage with organization-scoped access and analytics processing.",
+    security: "Authentication, JWT validation, RBAC, tenant isolation, and organization-aware data access are core concerns in this analytics platform design.",
+    role: "The project reflects full-stack product work spanning user experience, API architecture, analytics logic, and security-conscious implementation.",
+    outcome: "This case study represents a multi-tenant SaaS analytics platform focused on reporting, operations, and business visibility.",
+    lessons: "This work demonstrates secure application design, role-aware access patterns, and analytics-focused product engineering.",
+    challenge: "The main challenge is making operational data actionable while preserving clarity, access boundaries, and system trust.",
   },
   "siaya-community-digital-hub": {
     category: "Community / Learning Platform",
-    architecture: "Frontend application → API/backend services → PostgreSQL data layer → content and user workflows supporting community learning.",
-    security: "User-facing platform workflows require secure access control, well-validated content access patterns and careful handling of platform data.",
-    role: "This project reflects full-stack delivery for a community-oriented platform, including interface design, data models and backend system coordination.",
-    outcome: "This case study represents a learning and community platform concept in the portfolio, with architecture and implementation detail presented at a high level.",
-    lessons: "The project demonstrates community platform design, content-driven workflows and full-stack implementation in a product context.",
-    challenge: "The main challenge is balancing accessible user experience with structured content, platform workflows and maintainable data access patterns.",
+    architecture: "Next.js frontend → NestJS backend → Prisma data layer → user and learning workflows for course access and platform operations.",
+    security: "The platform needs secure authentication, validated user flows, and careful handling of educational data and access controls.",
+    role: "This project reflects full-stack delivery for a community learning product, including interface design, backend service logic, and data modeling.",
+    outcome: "This case study represents a learning platform designed to support community education and structured digital access.",
+    lessons: "The project demonstrates community platform design, content workflows, and full-stack implementation in a product context.",
+    challenge: "Balancing accessible user experience with structured learning workflows and maintainable platform data access is the core challenge.",
   },
-  "personal-portfolio": {
+  "portfolio": {
     category: "Developer Portfolio",
-    architecture: "React frontend → Vite build pipeline → Supabase-backed content/data layer → public presentation and routing layers.",
-    security: "The portfolio uses security-aware defaults, public content separation and controlled access patterns for content and application infrastructure.",
-    role: "This project reflects end-to-end implementation across frontend architecture, content/data modeling, responsive design and deployment-oriented engineering.",
-    outcome: "This portfolio is an active engineering project that presents work, technical capability and project context in a structured form.",
-    lessons: "The portfolio demonstrates modern frontend architecture, content-driven design, responsive implementation and secure public-facing application patterns.",
-    challenge: "The challenge here is building a clear, maintainable public-facing system that communicates technical work without overloading the visitor or creating brittle content.",
+    architecture: "React frontend → Vite build pipeline → Supabase-backed content/data layer → public presentation and route-based navigation.",
+    security: "The portfolio uses controlled public reads, service-layer data access, and security-aware content architecture while preserving a clear separation between public and protected systems.",
+    role: "This project reflects end-to-end implementation across frontend architecture, responsive design, content modeling, and deployment-oriented engineering.",
+    outcome: "This portfolio is a working engineering project that presents work, technical capability, and project context in a structured way.",
+    lessons: "The portfolio demonstrates modern frontend architecture, content-driven design, responsive implementation, and secure public-facing application patterns.",
+    challenge: "The challenge is communicating technical work clearly without creating brittle content or overloading the user experience.",
+  },
+  "health": {
+    category: "Healthcare / Management System",
+    architecture: "React frontend → Django REST Framework domain APIs → structured healthcare data layer covering users, patients, doctors, appointments, finance, pharmacy, and labs.",
+    security: "Healthcare workflows benefit from disciplined access control, secure API design, and careful handling of sensitive operational data.",
+    role: "The project reflects healthcare system architecture and workflow-oriented application design across multiple domain areas.",
+    outcome: "This case study represents a healthcare management system organized around structured operational workflows and modular domain apps.",
+    lessons: "The project highlights the need for clear separation of domain responsibilities, secure data handling, and maintainable app structure.",
+    challenge: "The main challenge is managing operational complexity across patient, clinician, scheduling, and administrative workflows without losing clarity.",
+  },
+  "smart-voting-system": {
+    category: "Blockchain / Election System",
+    architecture: "React + Vite frontend → Solidity smart contracts → Hardhat deployment and testing environment → Ethereum-compatible voting logic.",
+    security: "Wallet-based authentication, smart-contract design, and transparent voting logic are core to the security model of a decentralized election system.",
+    role: "The project reflects blockchain-aware interface implementation and a decentralized voting workflow powered by smart contracts.",
+    outcome: "This case study represents a voting platform that combines wallet authentication with blockchain-backed election logic.",
+    lessons: "The project demonstrates the importance of contract security, transparent election flow design, and secure frontend integration around wallet-based interaction.",
+    challenge: "The central challenge is balancing a transparent, trust-oriented voting experience with secure smart-contract behavior and reliable user flow design.",
   },
 };
 
@@ -85,9 +103,11 @@ export default function ProjectDetail() {
   const profile = slug ? projectProfiles[slug] : undefined;
   const techGroups = project ? groupTechnologies(project.project_technologies.map((item) => item.technology)) : [];
   const relatedProjects = [
-    { slug: "saas-analytics-dashboard", title: "SaaS Analytics" },
-    { slug: "siaya-community-digital-hub", title: "Siaya Community Digital Hub" },
-    { slug: "personal-portfolio", title: "Portfolio" },
+    { slug: "saas-analytics", title: "DataLens — SaaS Analytics Platform" },
+    { slug: "siaya-community-digital-hub", title: "Siaya Community Digital Hub Learning Platform" },
+    { slug: "portfolio", title: "Portfolio" },
+    { slug: "health", title: "Health" },
+    { slug: "smart-voting-system", title: "Smart Voting System" },
   ].filter((entry) => entry.slug !== slug);
 
   useEffect(() => {

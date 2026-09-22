@@ -2,6 +2,14 @@ import { Section, SectionHeading } from "@/components/layout/Section";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 import { useProfile } from "@/hooks/useProfile";
 
+const TRAINING = [
+  { name: "Introduction to Cybersecurity", issuer: "Cisco", type: "Training" },
+  { name: "Artificial Intelligence", issuer: "Cisco", type: "Training" },
+  { name: "Basic Networking", issuer: "Cisco", type: "Training" },
+  { name: "Introduction to JavaScript", issuer: "Learning path / course", type: "Course" },
+  { name: "Python Essentials", issuer: "Learning path / course", type: "Course" },
+];
+
 const PHILOSOPHY = [
   {
     title: "Understand",
@@ -55,11 +63,33 @@ export default function About() {
         <SectionHeading eyebrow="Professional profile" title="Who I am" />
         <div className="max-w-3xl space-y-4 text-body text-foreground-muted">
           <p>
-            I am Geoffrey Akoo, a Full-Stack Web Developer + Cybersecurity Analyst. My work sits at the intersection of product development and security-conscious engineering: I build web applications that are usable, maintainable and designed with risk awareness in mind.
+            I build software systems at the intersection of product development and security-conscious engineering: web applications that are usable, maintainable, and designed with clear consideration for real-world risk.
           </p>
           <p>
-            I enjoy building software that connects interfaces, APIs, data models and system behavior into a single coherent product. My background in full-stack development is paired with a cybersecurity lens, which helps me think carefully about authentication, authorization, validation, secure data access and resilient design.
+            I enjoy connecting interfaces, APIs, data models and system behavior into a single coherent product. My background in full-stack development is paired with a cybersecurity lens, which helps me think carefully about authentication, authorization, validation, secure data access and resilient design.
           </p>
+        </div>
+      </Section>
+
+      <Section divider>
+        <SectionHeading eyebrow="Education" title="Academic background" />
+        <div className="max-w-3xl rounded-lg border border-border bg-background-raised p-6">
+          <p className="text-heading-md text-foreground">Bachelor of Science in Information and Communication Technology</p>
+          <p className="mt-3 text-body text-foreground-muted">Jaramogi Oginga Odinga University of Science and Technology (JOOUST)</p>
+          <p className="mt-3 text-meta text-foreground-faint">September 2023 – April 2027</p>
+        </div>
+      </Section>
+
+      <Section divider>
+        <SectionHeading eyebrow="Training & learning" title="Technical background beyond formal education" />
+        <div className="grid gap-4 md:grid-cols-2">
+          {TRAINING.map((item) => (
+            <div key={`${item.name}-${item.type}`} className="rounded-lg border border-border bg-background-raised p-5">
+              <p className="text-meta text-foreground-faint">{item.type}</p>
+              <p className="mt-2 text-heading-md text-foreground">{item.name}</p>
+              <p className="mt-2 text-sm text-foreground-muted">{item.issuer}</p>
+            </div>
+          ))}
         </div>
       </Section>
 

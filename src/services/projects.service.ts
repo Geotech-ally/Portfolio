@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { VERIFIED_PROJECTS } from "@/content/verified-content";
 import type { Project } from "@/types/database";
 
 export interface ProjectWithRelations extends Project {
@@ -6,32 +7,90 @@ export interface ProjectWithRelations extends Project {
   project_technologies: { technology: string }[];
 }
 
+const normalizeSlug = (slug: string) => {
+  const aliases: Record<string, string> = {
+    "saas-analytics-dashboard": "saas-analytics",
+    "saas-analytics": "saas-analytics",
+    "nexacare-hms": "health",
+    "health": "health",
+    "personal-portfolio": "portfolio",
+    "portfolio": "portfolio",
+    "siaya-community-digital-hub-learning-platform": "siaya-community-digital-hub",
+    "siaya-community-digital-hub": "siaya-community-digital-hub",
+    "smart-voting-system": "smart-voting-system",
+  };
+
+  return aliases[slug] ?? slug;
+};
+
+const projectFallbackList = VERIFIED_PROJECTS.map((project) => ({
+  ...project,
+  full_description: project.full_description,
+  problem: project.problem,
+  solution: project.solution,
+  role: project.role,
+  created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
+  cover_image_path: null,
+  featured: project.featured,
+  live_url: project.live_url,
+  github_url: project.github_url,
+  sort_order: project.sort_order,
+  content_status: project.content_status,
+  status: project.status,
+  short_description: project.short_description,
+  title: project.title,
+  slug: project.slug,
+}));
+
 /** Public: published projects only, RLS enforces this independently. */
 export async function listPublishedProjects(options?: { featuredOnly?: boolean }): Promise<ProjectWithRelations[]> {
-  let query = supabase
-    .from("projects")
-    .select("*, project_images(*), project_technologies(technology)")
-    .eq("content_status", "published")
-    .order("sort_order", { ascending: true });
+  try {
+    let query = supabase
+      .from("projects")
+      .select("*, project_images(*), project_technologies(technology)")
+      .eq("content_status", "published")
+      .order("sort_order", { ascending: true });
 
-  if (options?.featuredOnly) {
-    query = query.eq("featured", true);
+    if (options?.featuredOnly) {
+      query = query.eq("featured", true);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      if (error.code === "42P01") {
+        return projectFallbackList as ProjectWithRelations[];
+      }
+      throw error;
+    }
+    return (data ?? projectFallbackList) as ProjectWithRelations[];
+  } catch {
+    return projectFallbackList as ProjectWithRelations[];
   }
-
-  const { data, error } = await query;
-  if (error) throw error;
-  return (data ?? []) as ProjectWithRelations[];
 }
 
 export async function getProjectBySlug(slug: string): Promise<ProjectWithRelations | null> {
-  const { data, error } = await supabase
-    .from("projects")
-    .select("*, project_images(*), project_technologies(technology)")
-    .eq("slug", slug)
-    .eq("content_status", "published")
-    .maybeSingle();
-  if (error) throw error;
-  return data as ProjectWithRelations | null;
+  const normalized = normalizeSlug(slug);
+
+  try {
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*, project_images(*), project_technologies(technology)")
+      .eq("slug", normalized)
+      .eq("content_status", "published")
+      .maybeSingle();
+    if (error) {
+      if (error.code === "42P01") {
+        const match = projectFallbackList.find((project) => normalizeSlug(project.slug) === normalized) ?? projectFallbackList[0];
+        return (match ?? null) as ProjectWithRelations | null;
+      }
+      throw error;
+    }
+    return (data ?? projectFallbackList.find((project) => normalizeSlug(project.slug) === normalized) ?? null) as ProjectWithRelations | null;
+  } catch {
+    const match = projectFallbackList.find((project) => normalizeSlug(project.slug) === normalized) ?? projectFallbackList[0];
+    return (match ?? null) as ProjectWithRelations | null;
+  }
 }
 
 /** Admin only — RLS rejects this for non-admin sessions regardless of UI state. */
