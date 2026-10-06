@@ -6,6 +6,13 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export const SUPABASE_CONFIG_PRESENT = Boolean(supabaseUrl && supabaseAnonKey);
 
+if (!SUPABASE_CONFIG_PRESENT && import.meta.env.DEV) {
+  console.error("Supabase configuration is missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in the local environment.", {
+    urlPresent: Boolean(supabaseUrl),
+    publishableKeyPresent: Boolean(supabaseAnonKey),
+  });
+}
+
 let supabaseClient: ReturnType<typeof createClient<Database>> | unknown;
 
 if (SUPABASE_CONFIG_PRESENT) {

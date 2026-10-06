@@ -58,7 +58,7 @@ export default function BlogDetail() {
     <Section>
       {isLoading ? <LoadingGrid count={1} /> : null}
       {isError ? <ErrorState /> : null}
-      {!isLoading && !post ? (
+      {!isLoading && !isError && !post ? (
         <p className="text-body text-foreground-muted">
           Post not found. <Link to="/blog" className="text-primary">Back to blog</Link>
         </p>

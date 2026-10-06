@@ -1,9 +1,10 @@
 import { lazy, Suspense, type ReactNode } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import { RootLayout } from "@/components/layout/RootLayout";
 import { AdminLayout } from "@/pages/admin/AdminLayout";
 import { AdminUnavailable } from "@/pages/admin/AdminUnavailable";
 import { PageSkeleton } from "@/components/shared/AsyncStates";
+import { RouterErrorBoundary } from "@/components/shared/AppErrorBoundary";
 
 // Home is eagerly loaded — it's the most common entry point and lazy-loading
 // it would add a needless round trip to first paint. Everything else is
@@ -34,36 +35,41 @@ function page(element: ReactNode) {
 
 export const router = createBrowserRouter([
   {
-    element: <RootLayout />,
-    errorElement: page(<NotFound />),
+    element: <Outlet />,
+    errorElement: <RouterErrorBoundary />,
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/about", element: page(<About />) },
-      { path: "/skills", element: page(<Skills />) },
-      { path: "/projects", element: page(<Projects />) },
-      { path: "/projects/:slug", element: page(<ProjectDetail />) },
-      { path: "/experience", element: page(<Experience />) },
-      { path: "/certifications", element: page(<Certifications />) },
-      { path: "/security-lab", element: page(<SecurityLab />) },
-      { path: "/security-lab/:slug", element: page(<SecurityWriteupDetail />) },
-      { path: "/blog", element: page(<Blog />) },
-      { path: "/blog/:slug", element: page(<BlogDetail />) },
-      { path: "/resume", element: page(<Resume />) },
-      { path: "/contact", element: page(<Contact />) },
-      { path: "/privacy", element: page(<Privacy />) },
-      { path: "*", element: page(<NotFound />) },
-    ],
-  },
-  { path: "/admin/login", element: page(<AdminLogin />) },
-  {
-    path: "/admin",
-    element: <AdminLayout />,
-    children: [
-      { index: true, element: page(<AdminDashboard />) },
-      { path: "projects", element: <AdminUnavailable title="Projects" /> },
-      { path: "blog", element: <AdminUnavailable title="Blog" /> },
-      { path: "security-lab", element: <AdminUnavailable title="Security Lab" /> },
-      { path: "messages", element: <AdminUnavailable title="Messages" /> },
+      {
+        element: <RootLayout />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "/about", element: page(<About />) },
+          { path: "/skills", element: page(<Skills />) },
+          { path: "/projects", element: page(<Projects />) },
+          { path: "/projects/:slug", element: page(<ProjectDetail />) },
+          { path: "/experience", element: page(<Experience />) },
+          { path: "/certifications", element: page(<Certifications />) },
+          { path: "/security-lab", element: page(<SecurityLab />) },
+          { path: "/security-lab/:slug", element: page(<SecurityWriteupDetail />) },
+          { path: "/blog", element: page(<Blog />) },
+          { path: "/blog/:slug", element: page(<BlogDetail />) },
+          { path: "/resume", element: page(<Resume />) },
+          { path: "/contact", element: page(<Contact />) },
+          { path: "/privacy", element: page(<Privacy />) },
+          { path: "*", element: page(<NotFound />) },
+        ],
+      },
+      { path: "/admin/login", element: page(<AdminLogin />) },
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: page(<AdminDashboard />) },
+          { path: "projects", element: <AdminUnavailable title="Projects" /> },
+          { path: "blog", element: <AdminUnavailable title="Blog" /> },
+          { path: "security-lab", element: <AdminUnavailable title="Security Lab" /> },
+          { path: "messages", element: <AdminUnavailable title="Messages" /> },
+        ],
+      },
     ],
   },
 ]);

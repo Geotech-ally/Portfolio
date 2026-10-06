@@ -131,9 +131,13 @@ default production output directory is `dist`.
   /*  /index.html  200
   ```
 
-**Environment variables.** Set `VITE_SUPABASE_URL` and
-`VITE_SUPABASE_PUBLISHABLE_KEY` in the host's dashboard. Vite inlines them at
-build time, so you must rebuild after changing them.
+**Environment variables.** In Vercel, open **Project Settings → Environment
+Variables** and set `VITE_SUPABASE_URL` (Project URL) and
+`VITE_SUPABASE_PUBLISHABLE_KEY` (the anon / publishable key) for the Production
+environment. Add Preview or Development scopes if those deployments need
+Supabase too. Vite embeds `VITE_*` values during the build, so save the values
+and create a new deployment after adding or changing them. Never put the
+Supabase service-role key in a frontend environment variable; it bypasses RLS.
 
 ## 9. Security headers
 
