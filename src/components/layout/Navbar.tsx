@@ -32,9 +32,9 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
-        <NavLink to="/" className="text-meta font-semibold tracking-tight text-foreground" onClick={() => setOpen(false)}>
+    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-xl">
+      <Container className="flex h-[4.5rem] items-center justify-between">
+        <NavLink to="/" className="text-meta font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80" onClick={() => setOpen(false)}>
           Geoffrey Akoo
         </NavLink>
 
@@ -45,8 +45,8 @@ export function Navbar() {
               to={link.to}
               className={({ isActive }) =>
                 cn(
-                  "text-sm text-foreground-muted transition-colors duration-150 hover:text-foreground",
-                  isActive && "text-foreground"
+                  "rounded-full px-3 py-2 text-sm text-foreground-muted transition-all duration-150 hover:bg-background-raised hover:text-foreground",
+                  isActive && "bg-background-raised text-foreground shadow-sm"
                 )
               }
             >

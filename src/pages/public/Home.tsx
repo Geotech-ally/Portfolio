@@ -70,13 +70,20 @@ export default function Home() {
 
   return (
     <>
-      <section className="border-b border-border">
-        <Container className="grid gap-10 py-18 sm:py-24 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <section className="relative overflow-hidden border-b border-border bg-portfolio-mesh">
+        <div className="hero-orb left-[8%] top-20 h-40 w-40 bg-secondary/15 animate-pulse-soft" aria-hidden="true" />
+        <div className="hero-orb right-[10%] top-16 h-56 w-56 bg-primary/15 animate-pulse-soft" aria-hidden="true" />
+        <div className="absolute inset-0 bg-portfolio-grid opacity-40" aria-hidden="true" />
+        <Container className="relative z-10 grid gap-10 py-20 sm:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background-raised/70 px-4 py-2 text-meta backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-secondary shadow-[0_0_12px_var(--secondary)]" />
+              Available for selected opportunities
+            </div>
             <p className="text-meta mb-4 text-foreground-muted">{profile?.full_name ?? "Geoffrey Akoo"}</p>
-            <h1 className="text-display max-w-xl text-foreground">
+            <h1 className="text-display max-w-3xl text-foreground">
               <span className="block">Full-Stack Web Developer</span>
-              <span className="mt-2 block text-foreground-muted">Cybersecurity Analyst</span>
+              <span className="mt-2 block text-gradient-brand">Cybersecurity Analyst</span>
             </h1>
             <p className="mt-6 max-w-xl text-body text-foreground-muted">
               {profile?.short_bio ??
@@ -90,8 +97,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-border bg-background-raised p-6 sm:p-7">
-            <p className="text-meta mb-5 text-foreground">Professional focus</p>
+          <div className="glass-panel animate-float rounded-2xl p-6 sm:p-8">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="text-meta text-foreground">Professional focus</p>
+              <span className="rounded-full border border-secondary/30 bg-secondary/10 px-2.5 py-1 text-meta text-secondary">SECURE BY DESIGN</span>
+            </div>
             <ul className="space-y-4 text-sm text-foreground-muted">
               <li className="flex items-start gap-3">
                 <Code2 size={18} className="mt-0.5 text-foreground" aria-hidden="true" />
@@ -126,7 +136,7 @@ export default function Home() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {coreCapabilities.map(({ title, description }) => (
-            <div key={title} className="rounded-lg border border-border bg-background-raised p-5">
+            <div key={title} className="card-polished p-6">
               <p className="text-heading-md text-foreground">{title}</p>
               <p className="mt-3 text-body text-sm text-foreground-muted">{description}</p>
             </div>
@@ -149,7 +159,7 @@ export default function Home() {
               <Link
                 key={project.id}
                 to={`/projects/${project.slug}`}
-                className="group flex h-full flex-col rounded-lg border border-border bg-background-raised p-5 transition-colors hover:border-primary"
+                className="card-polished group flex h-full flex-col p-6"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-heading-md text-foreground">{project.title}</h3>

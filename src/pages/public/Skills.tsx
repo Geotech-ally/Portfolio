@@ -101,7 +101,7 @@ export default function Skills() {
       >
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {skillGroups.map((group) => (
-            <div key={group.title} className="rounded-lg border border-border bg-background-raised p-5">
+            <div key={group.title} className="card-polished p-6">
               <p className="text-meta text-foreground">{group.title}</p>
               <p className="mt-3 text-sm text-foreground-muted">{group.description}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
