@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin } from "lucide-react";
+import { Mail } from "lucide-react";
 import { SOCIAL_PROFILES } from "@/components/shared/SocialProfiles";
 import { SocialLink } from "@/components/shared/SocialLinks";
 import { Container } from "@/components/layout/Container";
@@ -75,17 +75,6 @@ export function Footer() {
                 className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
               >
                 <Mail size={18} />
-              </a>
-            ) : null}
-            {profile?.location ? (
-              <a
-                href="https://www.openstreetmap.org/search?query=Bondo%2C%20Siaya%20County%2C%20Kenya"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Location"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
-              >
-                <MapPin size={18} />
               </a>
             ) : null}
           </div>
