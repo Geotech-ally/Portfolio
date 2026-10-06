@@ -23,7 +23,7 @@ export default function Blog() {
   });
 
   return (
-    <Section surface="indigo">
+    <Section>
       <SectionHeading
         eyebrow="Writing"
         title="Blog"
