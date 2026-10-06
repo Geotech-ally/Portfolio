@@ -22,7 +22,7 @@ export function AdminLayout() {
 
   if (isLoading) return null;
   if (!isAuthenticated) return <Navigate to="/admin/login" replace />;
-  if (profile && profile.role !== "admin" && profile.role !== "editor") {
+  if (!profile || (profile.role !== "admin" && profile.role !== "editor")) {
     return <Navigate to="/admin/login" replace />;
   }
 

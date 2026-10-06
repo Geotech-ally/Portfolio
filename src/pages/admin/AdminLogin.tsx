@@ -22,7 +22,7 @@ type LoginInput = z.infer<typeof loginSchema>;
  */
 export default function AdminLogin() {
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, profile } = useAuth();
   const [formError, setFormError] = useState<string | null>(null);
   const {
     register,
@@ -30,7 +30,9 @@ export default function AdminLogin() {
     formState: { errors, isSubmitting },
   } = useForm<LoginInput>({ resolver: zodResolver(loginSchema) });
 
-  if (!isLoading && isAuthenticated) return <Navigate to="/admin" replace />;
+  if (!isLoading && isAuthenticated && (profile?.role === "admin" || profile?.role === "editor")) {
+    return <Navigate to="/admin" replace />;
+  }
 
   async function onSubmit(values: LoginInput) {
     setFormError(null);

@@ -118,9 +118,11 @@ right:
 
 **SPA rewrites.** This app uses `createBrowserRouter`, so all paths must
 serve `index.html` or deep links like `/projects/my-slug` will 404 on
-refresh.
+refresh. The repository includes a root-level `vercel.json` rewrite for this.
+In Vercel, keep the project Root Directory set to the repository root. Vite's
+default production output directory is `dist`.
 
-- Vercel — `vercel.json`:
+- Vercel — `vercel.json` (already present at the repository root):
   ```json
   { "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
   ```
