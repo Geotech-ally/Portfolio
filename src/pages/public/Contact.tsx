@@ -3,6 +3,8 @@ import { Section, SectionHeading } from "@/components/layout/Section";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 import { useProfile } from "@/hooks/useProfile";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/BrandIcons";
+import { SOCIAL_PROFILES } from "@/components/shared/SocialProfiles";
+import { SocialLink } from "@/components/shared/SocialLinks";
 
 export default function Contact() {
   usePageMetadata({
@@ -109,6 +111,14 @@ export default function Contact() {
             >
               Open map in OpenStreetMap <ArrowUpRight size={14} />
             </a>
+          </div>
+        </div>
+         <div className="surface-card p-6 md:p-8">
+          <p className="text-meta mb-4 text-foreground">Social profiles</p>
+          <div className="flex flex-wrap gap-3">
+            {SOCIAL_PROFILES.map((link) => (
+              <SocialLink key={link.label} link={link} />
+            ))}
           </div>
         </div>
       </div>

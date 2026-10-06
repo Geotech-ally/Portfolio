@@ -28,9 +28,12 @@ export const VERIFIED_PROFILE = {
   location: "Bondo, Siaya County, Kenya",
   email: "lemkwangjaline@gmail.com",
   github_url: "https://github.com/Geotech-ally",
-  linkedin_url: null,
+  linkedin_url: "https://www.linkedin.com/in/geoffreyakoo254/",
   phone: "+254 768 998 191",
-  other_links: [],
+  other_links: [
+    { label: "Facebook", url: "https://www.facebook.com/geoffreyakoo" },
+    { label: "Instagram", url: "https://www.instagram.com/akoo_254/" },
+  ],
 } as const;
 
 export const VERIFIED_PROJECTS: VerifiedProject[] = [

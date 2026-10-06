@@ -49,7 +49,8 @@
   --surface-inset: #0b1115;
   --surface-glass: rgb(20 28 34 / 78%);
   --surface-hover: #1a242b;
-  --surface-footer: var(--surface-raised);
+  --surface-indigo: #151326;
+  --surface-footer: #18142e;
 
   --foreground: #e7e7e2;
   --foreground-muted: #9a9fa6;
@@ -86,7 +87,7 @@
   --shadow-sm: var(--shadow-card);
   --shadow-md: var(--shadow-elevated);
   --shadow-lg: var(--shadow-overlay);
-  --footer-shadow: rgb(0 0 0 / 24%);
+  --footer-shadow: rgb(0 0 0 / 28%);
 
   --z-nav: 40;
   --z-overlay: 50;
@@ -107,7 +108,8 @@
   --surface-inset: #f0efe9;
   --surface-glass: rgb(255 255 255 / 88%);
   --surface-hover: #ddd9d1;
-  --surface-footer: #f7f6f1;
+  --surface-indigo: #f1f2fb;
+  --surface-footer: #231e42;
 
   --foreground: #1f2320;
   --foreground-muted: #404842;
@@ -144,7 +146,7 @@
   --shadow-sm: var(--shadow-card);
   --shadow-md: var(--shadow-elevated);
   --shadow-lg: var(--shadow-overlay);
-  --footer-shadow: rgb(37 41 36 / 10%);
+  --footer-shadow: rgb(0 0 0 / 18%);
 }
 
 /* Map tokens into Tailwind's theme so utilities like bg-background work */
@@ -159,6 +161,7 @@
   --color-surface-soft: var(--surface-soft);
   --color-surface-inset: var(--surface-inset);
   --color-surface-hover: var(--surface-hover);
+  --color-surface-indigo: var(--surface-indigo);
   --color-surface-footer: var(--surface-footer);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);

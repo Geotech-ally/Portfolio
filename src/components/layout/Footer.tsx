@@ -1,34 +1,9 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/shared/BrandIcons";
+import { Mail, MapPin } from "lucide-react";
+import { SOCIAL_PROFILES } from "@/components/shared/SocialProfiles";
+import { SocialLink } from "@/components/shared/SocialLinks";
 import { Container } from "@/components/layout/Container";
 import { useProfile } from "@/hooks/useProfile";
-
-function FacebookIcon(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.1c0-.9.3-1.6 1.7-1.6H17V2.5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1V9.8H8v3.2h2.6v8h2.9Z" />
-    </svg>
-  );
-}
-
-function InstagramIcon(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" {...props}>
-      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
-      <circle cx="12" cy="12" r="4.1" />
-      <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function TwitterIcon(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M18.9 2h3.4l-7.4 8.5L22.7 22h-6.7l-5.2-7.5L4.7 22H1.3l7.9-9.1L1.2 2h6.9l4.7 6.9L18.9 2Zm-1.2 18h1.8L7.1 3.9H5.2L17.7 20Z" />
-    </svg>
-  );
-}
 
 const getSocialEntry = (profile: any, label: string) => {
   const direct = profile?.other_links?.find((entry: { label: string; url: string }) => entry.label.toLowerCase() === label.toLowerCase());
@@ -43,12 +18,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   const socialLinks = [
-    { label: "Facebook", href: getSocialEntry(profile, "Facebook"), Icon: FacebookIcon },
-    { label: "Instagram", href: getSocialEntry(profile, "Instagram"), Icon: InstagramIcon },
-    { label: "Twitter / X", href: getSocialEntry(profile, "Twitter") ?? getSocialEntry(profile, "X") ?? getSocialEntry(profile, "Twitter / X"), Icon: TwitterIcon },
-    { label: "LinkedIn", href: getSocialEntry(profile, "LinkedIn"), Icon: LinkedinIcon },
-    { label: "GitHub", href: getSocialEntry(profile, "GitHub"), Icon: GithubIcon },
-  ].filter((item) => item.href) as Array<{ label: string; href: string; Icon: any }>;
+    ...SOCIAL_PROFILES.map((link) => ({
+      ...link,
+      href: link.href || getSocialEntry(profile, link.label),
+    })),
+  ].filter((item) => item.href);
 
   return (
     <footer className="site-footer theme-surface-transition border-t border-border-strong">
@@ -89,19 +63,10 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-meta mb-3 text-foreground">Social</p>
+          <p className="text-meta mb-3 text-foreground">Connect</p>
           <div className="flex flex-wrap gap-3">
-            {socialLinks.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={label}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
-              >
-                {typeof Icon === "function" && Icon !== Mail ? <Icon width={18} height={18} /> : <ArrowUpRight size={18} />}
-              </a>
+            {socialLinks.map((link) => (
+              <SocialLink key={link.label} link={link} />
             ))}
             {profile?.email ? (
               <a
