@@ -287,8 +287,8 @@ html { scrollbar-gutter: stable; }
 .site-footer .social-link { background: rgb(255 255 255 / 4%); }
 .site-footer .social-link:hover { border-color: #c4bfd3; background: var(--surface-hover); color: #fff; }
 .site-footer .footer-bottom { border-color: var(--border); }
-.projects-section { background: var(--surface-subtle); }
-[data-theme="light"] .projects-section { background: #eff0f6; }
+.indigo-surface-section { background: var(--surface-subtle); }
+[data-theme="light"] .indigo-surface-section { background: #eff0f6; }
 .theme-surface-transition,
 .theme-surface-transition * {
   transition-property: color, background-color, border-color, box-shadow;
