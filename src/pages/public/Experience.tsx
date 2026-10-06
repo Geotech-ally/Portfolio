@@ -23,7 +23,7 @@ export default function Experience() {
       >
         <ol className="space-y-10 border-l border-border pl-6">
           {data?.map((item) => (
-            <li key={item.id} className="relative">
+            <li key={item.id} className="surface-card relative p-6 sm:p-8">
               <span className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full bg-primary" />
               <p className="text-meta">{formatRange(item.start_date, item.end_date)}</p>
               <h3 className="text-heading-md mt-1 text-foreground">{item.position}</h3>

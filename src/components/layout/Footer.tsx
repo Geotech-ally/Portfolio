@@ -51,7 +51,7 @@ export function Footer() {
   ].filter((item) => item.href) as Array<{ label: string; href: string; Icon: any }>;
 
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border bg-background/70">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="text-heading-md text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</p>

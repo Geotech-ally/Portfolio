@@ -12,7 +12,7 @@ interface SectionProps {
 
 export function Section({ children, className, id, divider = false }: SectionProps) {
   return (
-    <section id={id} className={cn("py-16 sm:py-24", divider && "schematic-rule")}>
+    <section id={id} className={cn("py-16 sm:py-24 lg:py-28", divider && "schematic-rule")}>
       <Container className={className}>{children}</Container>
     </section>
   );
@@ -28,8 +28,8 @@ interface SectionHeadingProps {
 export function SectionHeading({ eyebrow, title, description, className }: SectionHeadingProps) {
   return (
     <div className={cn("mb-10 max-w-2xl", className)}>
-      {eyebrow ? <p className="text-meta mb-3">{eyebrow}</p> : null}
-      <h2 className="text-heading-lg text-foreground">{title}</h2>
+      {eyebrow ? <p className="text-meta eyebrow-mark mb-3 text-foreground-faint">{eyebrow}</p> : null}
+      <h2 className="section-heading text-heading-lg text-foreground">{title}</h2>
       {description ? <p className="text-body mt-3 text-foreground-muted">{description}</p> : null}
     </div>
   );

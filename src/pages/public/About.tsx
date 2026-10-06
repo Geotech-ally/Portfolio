@@ -73,7 +73,7 @@ export default function About() {
 
       <Section divider>
         <SectionHeading eyebrow="Education" title="Academic background" />
-        <div className="max-w-3xl rounded-lg border border-border bg-background-raised p-6">
+        <div className="surface-card max-w-3xl p-6">
           <p className="text-heading-md text-foreground">Bachelor of Science in Information and Communication Technology</p>
           <p className="mt-3 text-body text-foreground-muted">Jaramogi Oginga Odinga University of Science and Technology (JOOUST)</p>
           <p className="mt-3 text-meta text-foreground-faint">September 2023 – April 2027</p>
@@ -84,7 +84,7 @@ export default function About() {
         <SectionHeading eyebrow="Training & learning" title="Technical background beyond formal education" />
         <div className="grid gap-4 md:grid-cols-2">
           {TRAINING.map((item) => (
-            <div key={`${item.name}-${item.type}`} className="rounded-lg border border-border bg-background-raised p-5">
+            <div key={`${item.name}-${item.type}`} className="surface-card p-5">
               <p className="text-meta text-foreground-faint">{item.type}</p>
               <p className="mt-2 text-heading-md text-foreground">{item.name}</p>
               <p className="mt-2 text-sm text-foreground-muted">{item.issuer}</p>
@@ -96,13 +96,13 @@ export default function About() {
       <Section divider>
         <SectionHeading eyebrow="What I do" title="Full-stack development and cybersecurity" />
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-lg border border-border bg-background-raised p-6">
+          <div className="surface-card p-6">
             <p className="text-meta text-foreground">Full-Stack Web Development</p>
             <p className="mt-3 text-body text-foreground-muted">
               I work across the stack to build modern web applications, from frontend experiences and product flows to backend logic, API integrations and database-backed workflows.
             </p>
           </div>
-          <div className="rounded-lg border border-border bg-background-raised p-6">
+          <div className="surface-card p-6">
             <p className="text-meta text-foreground">Cybersecurity Analysis</p>
             <p className="mt-3 text-body text-foreground-muted">
               I apply a security mindset to the systems I build, thinking about access control, data handling, validation, secure API design and the broader system risks that shape reliable software.

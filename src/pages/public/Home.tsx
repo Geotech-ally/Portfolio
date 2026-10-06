@@ -70,42 +70,52 @@ export default function Home() {
 
   return (
     <>
-      <section className="border-b border-border">
-        <Container className="grid gap-10 py-18 sm:py-24 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div>
-            <p className="text-meta mb-4 text-foreground-muted">{profile?.full_name ?? "Geoffrey Akoo"}</p>
+      <section className="relative isolate overflow-hidden border-b border-border">
+        <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-70" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-36 -top-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-secondary/10 blur-3xl" aria-hidden="true" />
+        <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-32">
+          <div className="fade-up">
+            <p className="text-meta eyebrow-mark mb-6 text-foreground-muted">{profile?.full_name ?? "Geoffrey Akoo"} <span className="ml-1 inline-flex items-center gap-2 rounded-full border border-secondary/25 bg-secondary/10 px-3 py-1 font-sans text-xs tracking-normal text-secondary"><span className="h-1.5 w-1.5 rounded-full bg-secondary" />Developer · Security analyst</span></p>
             <h1 className="text-display max-w-xl text-foreground">
-              <span className="block">Full-Stack Web Developer</span>
-              <span className="mt-2 block text-foreground-muted">Cybersecurity Analyst</span>
+              <span className="block">Building useful</span>
+              <span className="block text-primary">software,</span>
+              <span className="block text-foreground-muted">with security in mind.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-body text-foreground-muted">
+            <p className="mt-7 max-w-xl text-lg leading-8 text-foreground-muted">
               {profile?.short_bio ??
                 "I design and build modern web applications with security considered throughout the development lifecycle."}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <LinkButton to="/projects">View Projects</LinkButton>
-              <LinkButton to="/contact" variant="secondary">Contact Me</LinkButton>
-              <LinkButton to="/resume" variant="ghost">View Resume</LinkButton>
+              <LinkButton to="/projects" size="lg">Explore my work <ArrowUpRight size={17} /></LinkButton>
+              <LinkButton to="/contact" variant="secondary" size="lg">Let’s talk</LinkButton>
             </div>
+            <p className="text-meta mt-8 flex items-center gap-2 text-foreground-faint"><span className="h-px w-8 bg-border-strong" />Full-stack development <span className="text-primary">/</span> Cybersecurity analysis</p>
           </div>
 
-          <div className="rounded-lg border border-border bg-background-raised p-6 sm:p-7">
-            <p className="text-meta mb-5 text-foreground">Professional focus</p>
+          <div className="surface-card fade-up p-6 sm:p-8" style={{ animationDelay: "100ms" }}>
+            <div className="mb-7 flex items-center justify-between gap-4">
+              <p className="text-meta text-foreground">Professional focus</p>
+              <span className="font-mono text-xs text-foreground-faint">01 — 03</span>
+            </div>
             <ul className="space-y-4 text-sm text-foreground-muted">
               <li className="flex items-start gap-3">
-                <Code2 size={18} className="mt-0.5 text-foreground" aria-hidden="true" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/10 text-primary"><Code2 size={17} aria-hidden="true" /></span>
                 <span>Modern full-stack web applications built with clear product thinking and maintainable architecture.</span>
               </li>
               <li className="flex items-start gap-3">
-                <Database size={18} className="mt-0.5 text-foreground" aria-hidden="true" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border-strong bg-background text-foreground"><Database size={17} aria-hidden="true" /></span>
                 <span>Database-driven systems and API workflows designed for real-world operational use.</span>
               </li>
               <li className="flex items-start gap-3">
-                <ShieldCheck size={18} className="mt-0.5 text-foreground" aria-hidden="true" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/10 text-secondary"><ShieldCheck size={17} aria-hidden="true" /></span>
                 <span>Security-conscious engineering that considers risk, validation and resilient design from the start.</span>
               </li>
             </ul>
+            <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
+              <span className="text-meta text-foreground-faint">Working across the stack</span>
+              <Link to="/about" className="inline-flex items-center gap-1 text-sm text-primary hover:underline">About me <ArrowUpRight size={14} /></Link>
+            </div>
           </div>
         </Container>
       </section>
@@ -126,7 +136,7 @@ export default function Home() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {coreCapabilities.map(({ title, description }) => (
-            <div key={title} className="rounded-lg border border-border bg-background-raised p-5">
+            <div key={title} className="surface-card p-5">
               <p className="text-heading-md text-foreground">{title}</p>
               <p className="mt-3 text-body text-sm text-foreground-muted">{description}</p>
             </div>
@@ -149,7 +159,7 @@ export default function Home() {
               <Link
                 key={project.id}
                 to={`/projects/${project.slug}`}
-                className="group flex h-full flex-col rounded-lg border border-border bg-background-raised p-5 transition-colors hover:border-primary"
+                className="surface-card group flex h-full flex-col p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-heading-md text-foreground">{project.title}</h3>
@@ -187,7 +197,7 @@ export default function Home() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {engineeringApproach.map(({ step, description }, index) => (
-            <div key={step} className="rounded-lg border border-border bg-background-raised p-5">
+            <div key={step} className="surface-card p-5">
               <p className="text-meta text-foreground-faint">0{index + 1}</p>
               <h3 className="mt-3 text-heading-md text-foreground">{step}</h3>
               <p className="mt-2 text-sm text-foreground-muted">{description}</p>

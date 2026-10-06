@@ -32,21 +32,25 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
-        <NavLink to="/" className="text-meta font-semibold tracking-tight text-foreground" onClick={() => setOpen(false)}>
-          Geoffrey Akoo
+    <header className="sticky top-0 z-40 border-b border-border bg-background/75 backdrop-blur-xl">
+      <Container className="flex h-[4.5rem] items-center justify-between">
+        <NavLink to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/35 bg-primary/10 font-mono text-sm font-semibold text-primary transition-colors group-hover:bg-primary/15" aria-hidden="true">GA</span>
+          <span className="flex flex-col">
+            <span className="text-sm font-semibold tracking-tight text-foreground">Geoffrey Akoo</span>
+            <span className="font-mono text-[10px] tracking-[.12em] text-foreground-faint">ENGINEERING · SECURITY</span>
+          </span>
         </NavLink>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 rounded-full border border-border/80 bg-background-raised/65 p-1 md:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
                 cn(
-                  "text-sm text-foreground-muted transition-colors duration-150 hover:text-foreground",
-                  isActive && "text-foreground"
+                  "rounded-full px-3 py-2 text-[13px] text-foreground-muted transition-colors duration-150 hover:bg-background-raised hover:text-foreground",
+                  isActive && "bg-background text-foreground shadow-sm"
                 )
               }
             >
@@ -60,7 +64,7 @@ export function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-            className="rounded-md p-2 text-foreground-muted transition-colors hover:bg-background-raised hover:text-foreground"
+            className="rounded-full border border-border p-2 text-foreground-muted transition-colors hover:border-border-strong hover:bg-background-raised hover:text-foreground"
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -68,7 +72,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="p-2 text-foreground md:hidden"
+          className="rounded-full border border-border p-2 text-foreground transition-colors hover:bg-background-raised md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-nav-panel"
@@ -84,7 +88,7 @@ export function Navbar() {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          className="border-t border-border bg-background md:hidden"
+          className="border-t border-border bg-background/95 shadow-lg backdrop-blur-xl md:hidden"
         >
           <Container className="flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
@@ -94,7 +98,7 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   cn(
-                    "rounded-md px-3 py-3 text-base text-foreground-muted transition-colors hover:bg-background-raised hover:text-foreground",
+                    "rounded-xl px-4 py-3 text-base text-foreground-muted transition-colors hover:bg-background-raised hover:text-foreground",
                     isActive && "bg-background-raised text-foreground"
                   )
                 }

@@ -111,7 +111,7 @@ export default function Projects() {
               <Link
                 key={project.id}
                 to={projectLink}
-                className="group rounded-lg border border-border bg-background-raised p-6 transition-colors hover:border-primary"
+                className="surface-card group p-6"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>

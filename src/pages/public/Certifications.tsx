@@ -22,7 +22,7 @@ export default function Certifications() {
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {data?.map((cert) => (
-            <div key={cert.id} className="rounded-lg border border-border bg-background-raised p-6">
+            <div key={cert.id} className="surface-card p-6">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-foreground font-medium">{cert.name}</p>
                 <span className="text-meta rounded-sm border border-border px-2 py-1 text-foreground-faint">

@@ -39,9 +39,9 @@
   color-scheme: dark;
 
   /* Core surfaces */
-  --background: #0f1216;      /* ink */
-  --background-raised: #171b21; /* surface, one step up */
-  --background-sunken: #0a0c0f;
+  --background: #0c1115;
+  --background-raised: #141c22;
+  --background-sunken: #080c10;
 
   /* Text */
   --foreground: #e7e7e2;
@@ -49,8 +49,8 @@
   --foreground-faint: #5c6169;
 
   /* Borders / dividers (hairlines, not shadows) */
-  --border: #262b32;
-  --border-strong: #363c45;
+  --border: #27323a;
+  --border-strong: #3a4851;
 
   /* Brand */
   --primary: #e1a34a;         /* signal — amber dial */
@@ -65,7 +65,7 @@
   --info: #43c6b4;
 
   /* Card (used sparingly — see component notes) */
-  --card: #171b21;
+  --card: #141c22;
   --card-foreground: #e7e7e2;
 
   /* Ring / focus */
@@ -84,7 +84,7 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --background: #f5f6f4;
+  --background: #f4f6f5;
   --background-raised: #ffffff;
   --background-sunken: #eceeea;
 
@@ -92,8 +92,8 @@
   --foreground-muted: #565c64;
   --foreground-faint: #8a8f96;
 
-  --border: #dde0dc;
-  --border-strong: #c7cbc5;
+  --border: #dbe3e1;
+  --border-strong: #c5d1ce;
 
   --primary: #b9781f;
   --primary-foreground: #ffffff;
@@ -158,11 +158,38 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-sans);
-  background: var(--background);
+  background:
+    radial-gradient(ellipse at 12% 0%, color-mix(in srgb, var(--secondary) 7%, transparent), transparent 34rem),
+    var(--background);
   color: var(--foreground);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+
+html { scrollbar-gutter: stable; }
+
+/* Shared surface language: quiet borders, soft depth, and a precise hover lift. */
+.surface-card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--background-raised) 96%, var(--secondary) 4%), var(--background-raised));
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--duration-base) var(--ease-signal), box-shadow var(--duration-base) var(--ease-signal), transform var(--duration-base) var(--ease-signal);
+}
+.surface-card:hover {
+  border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.surface-card:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.hero-grid {
+  background-image: linear-gradient(color-mix(in srgb, var(--border) 27%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--border) 27%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+.eyebrow-mark { display: inline-flex; align-items: center; gap: .65rem; }
+.eyebrow-mark::before { content: ""; width: 1.4rem; height: 1px; background: var(--primary); }
 
 ::selection {
   background: var(--primary);
@@ -213,10 +240,10 @@ a {
    for technical/metadata content only (per design brief, not decoration).
    -------------------------------------------------------------------------- */
 .text-display {
-  font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+  font-size: clamp(2.65rem, 5.6vw, 5.35rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .text-heading-lg {
@@ -341,6 +368,13 @@ a {
 
 .fade-up {
   animation: fadeUp var(--duration-slow) var(--ease-signal) both;
+}
+
+.section-heading { letter-spacing: -0.025em; }
+.text-meta { line-height: 1.5; }
+@media (max-width: 639px) {
+  .text-display { letter-spacing: -0.035em; }
+  .hero-grid { background-size: 34px 34px; }
 }
 @keyframes fadeUp {
   from {

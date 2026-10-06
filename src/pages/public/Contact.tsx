@@ -74,7 +74,7 @@ export default function Contact() {
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
               aria-label={label}
-              className="group rounded-xl border border-border bg-background-raised p-5 transition-colors hover:border-primary"
+              className="surface-card group p-5"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-foreground">
