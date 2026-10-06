@@ -11,7 +11,7 @@ export interface SocialLink {
 export const SOCIAL_PROFILES: SocialLink[] = [
   {
     label: "Facebook",
-    href: "https://www.facebook.com/geoffreyakoo",
+    href: "https://www.facebook.com/profile.php?id=100092996245901",
     Icon: FacebookIcon,
     ariaLabel: "Visit Geoffrey Akoo on Facebook",
   },

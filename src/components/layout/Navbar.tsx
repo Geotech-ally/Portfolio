@@ -4,6 +4,7 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
+import companyLogo from "../../../images/company logo.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -35,7 +36,9 @@ export function Navbar() {
     <header className="site-header sticky top-0 z-40 border-b border-border-strong">
       <Container className="flex h-[4.5rem] items-center justify-between">
         <NavLink to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/35 bg-primary/10 font-mono text-sm font-semibold text-primary transition-colors group-hover:bg-primary/15" aria-hidden="true">GA</span>
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-primary/35 bg-white transition-colors group-hover:border-primary/60" aria-hidden="true">
+            <img src={companyLogo} alt="" className="h-full w-full object-contain" />
+          </span>
           <span className="flex flex-col">
             <span className="text-sm font-semibold tracking-tight text-foreground">Geoffrey Akoo</span>
             <span className="font-mono text-[10px] tracking-[.12em] text-foreground-faint">ENGINEERING · SECURITY</span>
