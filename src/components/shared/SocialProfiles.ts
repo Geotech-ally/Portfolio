@@ -1,10 +1,10 @@
-import type { ComponentProps } from "react";
-import { FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon, GithubIcon, Mail } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
+import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from "@/components/shared/BrandIcons";
 
 export interface SocialLink {
   label: string;
   href: string;
-  Icon: ComponentProps<"svg">["children"] | typeof Mail;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
   ariaLabel: string;
 }
 
@@ -24,7 +24,7 @@ export const SOCIAL_PROFILES: SocialLink[] = [
   {
     label: "Twitter / X",
     href: "",
-    Icon: TwitterIcon,
+    Icon: XIcon,
     ariaLabel: "Visit Geoffrey Akoo on Twitter / X",
   },
   {

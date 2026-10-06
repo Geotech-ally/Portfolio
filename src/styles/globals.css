@@ -46,11 +46,12 @@
   --surface-raised: var(--background-raised);
   --surface-card: #151e24;
   --surface-soft: #11191e;
+  --surface-subtle: #131a1f;
   --surface-inset: #0b1115;
   --surface-glass: rgb(20 28 34 / 78%);
   --surface-hover: #1a242b;
   --surface-indigo: #151326;
-  --surface-footer: #18142e;
+  --surface-footer: #241b45;
 
   --foreground: #e7e7e2;
   --foreground-muted: #9a9fa6;
@@ -105,11 +106,12 @@
   --surface-raised: #ffffff;
   --surface-card: #ffffff;
   --surface-soft: #e8e6df;
+  --surface-subtle: #f7f6f1;
   --surface-inset: #f0efe9;
   --surface-glass: rgb(255 255 255 / 88%);
   --surface-hover: #ddd9d1;
   --surface-indigo: #f1f2fb;
-  --surface-footer: #231e42;
+  --surface-footer: #241b45;
 
   --foreground: #1f2320;
   --foreground-muted: #404842;
@@ -159,6 +161,7 @@
   --color-surface-raised: var(--surface-raised);
   --color-surface-glass: var(--surface-glass);
   --color-surface-soft: var(--surface-soft);
+  --color-surface-subtle: var(--surface-subtle);
   --color-surface-inset: var(--surface-inset);
   --color-surface-hover: var(--surface-hover);
   --color-surface-indigo: var(--surface-indigo);
@@ -265,8 +268,27 @@ html { scrollbar-gutter: stable; }
 .app-shell main > section:nth-of-type(even) { background-color: var(--surface-section); }
 .site-footer {
   background: var(--surface-footer);
+  color-scheme: dark;
+  --foreground: #f5f3fa;
+  --foreground-muted: #c4bfd3;
+  --foreground-faint: #aaa3bf;
+  --text-primary: var(--foreground);
+  --text-secondary: var(--foreground-muted);
+  --text-muted: var(--foreground-faint);
+  --border: #49415f;
+  --border-strong: #5b5274;
+  --surface-hover: #342b55;
+  --ring: #f0c16d;
   box-shadow: 0 -6px 24px var(--footer-shadow);
 }
+.site-footer a { transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease; }
+.site-footer a:hover { color: #fff; }
+.site-footer a:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.site-footer .social-link { background: rgb(255 255 255 / 4%); }
+.site-footer .social-link:hover { border-color: #c4bfd3; background: var(--surface-hover); color: #fff; }
+.site-footer .footer-bottom { border-color: var(--border); }
+.projects-section { background: var(--surface-subtle); }
+[data-theme="light"] .projects-section { background: #eff0f6; }
 .theme-surface-transition,
 .theme-surface-transition * {
   transition-property: color, background-color, border-color, box-shadow;
@@ -287,8 +309,9 @@ html { scrollbar-gutter: stable; }
 
 [data-theme="light"] .hero-grid { opacity: .12; }
 [data-theme="light"] .hero-glow { opacity: .15; }
+[data-theme="light"] .surface-card { border-color: #d0d2d8; }
 [data-theme="light"] .surface-card:hover { border-color: color-mix(in srgb, var(--primary) 35%, var(--border)); }
-header.site-header { background: var(--surface-raised); box-shadow: var(--shadow-card); }
+header.site-header { background: var(--surface-glass); box-shadow: var(--shadow-card); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 
 .theme-surface-transition .surface-card,
 .theme-surface-transition button,

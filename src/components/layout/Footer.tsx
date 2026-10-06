@@ -26,7 +26,7 @@ export function Footer() {
 
   return (
     <footer className="site-footer theme-surface-transition border-t border-border-strong">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
+      <Container className="grid gap-x-10 gap-y-9 py-12 sm:grid-cols-2 md:grid-cols-4 md:py-14">
         <div>
           <p className="text-heading-md text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</p>
           <p className="text-meta mt-2">{profile?.professional_title ?? "Full-Stack Developer + Cybersecurity Analyst"}</p>
@@ -92,7 +92,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <div className="border-t border-border py-6">
+      <div className="footer-bottom border-t border-border py-6">
         <Container className="flex flex-col items-start justify-between gap-2 text-xs text-foreground-faint sm:flex-row sm:items-center">
           <p>© {year} {profile?.full_name ?? "Geoffrey Akoo"}. All rights reserved.</p>
         </Container>

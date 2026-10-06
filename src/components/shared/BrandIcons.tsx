@@ -15,3 +15,29 @@ export function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M13.5 21v-8.2h2.75l.41-3.2H13.5V7.56c0-.93.26-1.56 1.6-1.56h1.7V3.14C16.5 3.05 15.5 3 14.34 3c-2.44 0-4.11 1.49-4.11 4.23V9.6H7.5v3.2h2.73V21h3.27Z" />
+    </svg>
+  );
+}
+
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" {...props}>
+      <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.6" cy="6.7" r=".8" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M18.9 3h2.9l-6.34 7.24L22.9 21h-5.83l-4.57-6.74L6.6 21H3.68l6.78-7.75L3.1 3h5.98l4.13 6.13L18.9 3Zm-1.02 16h1.61L8.18 4.9H6.45L17.88 19Z" />
+    </svg>
+  );
+}

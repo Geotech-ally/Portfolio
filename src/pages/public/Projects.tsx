@@ -89,7 +89,7 @@ export default function Projects() {
   const projects = (data && data.length > 0 ? liveProjects : fallbackProjects);
 
   return (
-    <Section>
+    <Section surface="indigo">
       <SectionHeading
         eyebrow="Case studies"
         title="Projects"

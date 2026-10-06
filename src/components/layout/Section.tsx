@@ -8,11 +8,12 @@ interface SectionProps {
   id?: string;
   /** Draws the hairline "schematic rule" above the section. Use for major, sequential sections only — not on every block. */
   divider?: boolean;
+  surface?: "default" | "indigo";
 }
 
-export function Section({ children, className, id, divider = false }: SectionProps) {
+export function Section({ children, className, id, divider = false, surface = "default" }: SectionProps) {
   return (
-    <section id={id} className={cn("pt-24 pb-16 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-28", divider && "schematic-rule")}>
+    <section id={id} className={cn("pt-24 pb-16 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-28", surface === "indigo" && "projects-section", divider && "schematic-rule")}>
       <Container className={className}>{children}</Container>
     </section>
   );
