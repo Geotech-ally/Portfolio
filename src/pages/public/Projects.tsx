@@ -102,7 +102,7 @@ export default function Projects() {
         isEmpty={!data || data.length === 0}
         emptyTitle="Projects will appear here once published from the admin dashboard."
       >
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-5 pb-8 md:grid-cols-2 lg:gap-6">
           {projects.map((project) => {
             const projectLink = project.slug ? `/projects/${project.slug}` : "/projects";
             const isFallbackProject = !data || data.length === 0;
@@ -111,7 +111,7 @@ export default function Projects() {
               <Link
                 key={project.id}
                 to={projectLink}
-                className="surface-card group p-6"
+                className="surface-card group p-5 sm:p-6"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>

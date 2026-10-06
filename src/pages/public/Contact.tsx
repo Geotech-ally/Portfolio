@@ -77,7 +77,7 @@ export default function Contact() {
               className="surface-card group p-5"
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-foreground">
+                <div className="surface-inset flex h-10 w-10 items-center justify-center text-foreground">
                   <Icon width={18} height={18} />
                 </div>
                 <ArrowUpRight size={16} className="text-foreground-faint transition-colors group-hover:text-primary" />
@@ -91,7 +91,7 @@ export default function Contact() {
 
         <div className="surface-card p-6 md:p-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-foreground">
+            <div className="surface-inset flex h-10 w-10 items-center justify-center text-foreground">
               <MapPin size={18} />
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="mt-5 rounded-xl border border-border bg-background p-4">
+          <div className="surface-inset mt-5 p-4">
             <a
               href="https://www.openstreetmap.org/search?query=Bondo%2C%20Siaya%20County%2C%20Kenya"
               target="_blank"

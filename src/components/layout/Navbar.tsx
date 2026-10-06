@@ -32,7 +32,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/75 backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-40 border-b border-border-strong">
       <Container className="flex h-[4.5rem] items-center justify-between">
         <NavLink to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
           <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/35 bg-primary/10 font-mono text-sm font-semibold text-primary transition-colors group-hover:bg-primary/15" aria-hidden="true">GA</span>
@@ -42,7 +42,7 @@ export function Navbar() {
           </span>
         </NavLink>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-border/80 bg-background-raised/65 p-1 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 rounded-full border border-border bg-surface-soft p-1 md:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
@@ -88,7 +88,7 @@ export function Navbar() {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          className="border-t border-border bg-background/95 shadow-lg backdrop-blur-xl md:hidden"
+          className="border-t border-border-strong bg-surface-raised shadow-lg md:hidden"
         >
           <Container className="flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (

@@ -87,7 +87,7 @@ export default function Blog() {
               type="button"
               disabled={page === 0}
               onClick={() => setPage((p) => Math.max(0, p - 1))}
-              className="rounded-md border border-border-strong px-4 py-2 text-sm disabled:opacity-40"
+              className="rounded-md border border-border-strong bg-surface-raised px-4 py-2 text-sm shadow-sm transition-colors hover:border-primary hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-40"
             >
               Previous
             </button>
@@ -95,7 +95,7 @@ export default function Blog() {
               type="button"
               disabled={(page + 1) * PAGE_SIZE >= data.total}
               onClick={() => setPage((p) => p + 1)}
-              className="rounded-md border border-border-strong px-4 py-2 text-sm disabled:opacity-40"
+              className="rounded-md border border-border-strong bg-surface-raised px-4 py-2 text-sm shadow-sm transition-colors hover:border-primary hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-40"
             >
               Next
             </button>

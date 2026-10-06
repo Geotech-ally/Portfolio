@@ -32,13 +32,13 @@ export default function AdminDashboard() {
       <h1 className="text-heading-lg text-foreground">Overview</h1>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
-          <div key={c.label} className="rounded-lg border border-border p-6">
+          <div key={c.label} className="surface-card p-6">
             <p className="text-meta">{c.label}</p>
             <p className="text-heading-lg mt-2 text-foreground">{c.value ?? "—"}</p>
           </div>
         ))}
       </div>
-      <div className="mt-10 rounded-lg border border-dashed border-border p-6 text-sm text-foreground-muted">
+      <div className="surface-inset mt-10 border-dashed p-6 text-sm text-foreground-muted">
         The admin overview is connected to live Supabase counts. Full CMS CRUD forms remain a follow-up implementation task before the admin workspace is considered complete.
       </div>
     </div>

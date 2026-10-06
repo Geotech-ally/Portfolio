@@ -104,7 +104,7 @@ export default function Home() {
                 <span>Modern full-stack web applications built with clear product thinking and maintainable architecture.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border-strong bg-background text-foreground"><Database size={17} aria-hidden="true" /></span>
+                <span className="surface-inset flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-foreground"><Database size={17} aria-hidden="true" /></span>
                 <span>Database-driven systems and API workflows designed for real-world operational use.</span>
               </li>
               <li className="flex items-start gap-3">
