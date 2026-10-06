@@ -42,11 +42,20 @@
   --background: #0c1115;
   --background-raised: #141c22;
   --background-sunken: #080c10;
+  --surface: #141c22;
+  --surface-raised: var(--background-raised);
+  --surface-card: linear-gradient(145deg, color-mix(in srgb, var(--background-raised) 96%, var(--secondary) 4%), var(--background-raised));
+  --surface-soft: #11191e;
+  --surface-glass: rgb(20 28 34 / 78%);
+  --surface-hover: #1a242b;
 
   /* Text */
   --foreground: #e7e7e2;
   --foreground-muted: #9a9fa6;
   --foreground-faint: #5c6169;
+  --text-primary: var(--foreground);
+  --text-secondary: var(--foreground-muted);
+  --text-muted: var(--foreground-faint);
 
   /* Borders / dividers (hairlines, not shadows) */
   --border: #27323a;
@@ -54,8 +63,12 @@
 
   /* Brand */
   --primary: #e1a34a;         /* signal — amber dial */
+  --brand-primary: var(--primary);
   --primary-foreground: #14171b;
+  --primary-action: #e1a34a;
+  --primary-action-foreground: #14171b;
   --secondary: #43c6b4;       /* current — cold teal, used for security context */
+  --brand-secondary: var(--secondary);
   --secondary-foreground: #0a0c0f;
 
   /* Status */
@@ -72,9 +85,12 @@
   --ring: #e1a34a;
 
   /* Shadows — restrained, used only for true elevation (menus, dialogs) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 2px 10px rgb(0 0 0 / 18%);
+  --shadow-elevated: 0 10px 28px rgb(0 0 0 / 28%);
+  --shadow-overlay: 0 18px 44px rgb(0 0 0 / 36%);
+  --shadow-sm: var(--shadow-card);
+  --shadow-md: var(--shadow-elevated);
+  --shadow-lg: var(--shadow-overlay);
 
   --z-nav: 40;
   --z-overlay: 50;
@@ -84,35 +100,51 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --background: #f4f6f5;
+  --background: #f7f8f6;
   --background-raised: #ffffff;
-  --background-sunken: #eceeea;
+  --background-sunken: #eef2ef;
+  --surface: #ffffff;
+  --surface-raised: var(--background-raised);
+  --surface-card: #ffffff;
+  --surface-soft: #f1f5f2;
+  --surface-glass: rgb(255 255 255 / 86%);
+  --surface-hover: #f2f5f2;
 
-  --foreground: #14171b;
-  --foreground-muted: #565c64;
-  --foreground-faint: #8a8f96;
+  --foreground: #202724;
+  --foreground-muted: #4f5b56;
+  --foreground-faint: #626e68;
+  --text-primary: var(--foreground);
+  --text-secondary: var(--foreground-muted);
+  --text-muted: var(--foreground-faint);
 
-  --border: #dbe3e1;
-  --border-strong: #c5d1ce;
+  --border: #dfe6e2;
+  --border-strong: #cbd5d0;
 
-  --primary: #b9781f;
-  --primary-foreground: #ffffff;
-  --secondary: #1f8f7d;
+  --primary: #925b12;
+  --brand-primary: var(--primary);
+  --primary-foreground: #1f211d;
+  --primary-action: #e4aa4b;
+  --primary-action-foreground: #282114;
+  --secondary: #176f60;
+  --brand-secondary: var(--secondary);
   --secondary-foreground: #ffffff;
 
-  --success: #2f8a52;
-  --warning: #b9781f;
+  --success: #267242;
+  --warning: #925b12;
   --danger: #c8433c;
-  --info: #1f8f7d;
+  --info: #176f60;
 
   --card: #ffffff;
   --card-foreground: #14171b;
 
-  --ring: #b9781f;
+  --ring: #925b12;
 
-  --shadow-sm: 0 1px 2px rgba(20, 23, 27, 0.06);
-  --shadow-md: 0 4px 16px rgba(20, 23, 27, 0.08);
-  --shadow-lg: 0 12px 32px rgba(20, 23, 27, 0.12);
+  --shadow-card: 0 2px 10px rgb(43 52 47 / 5%), 0 1px 2px rgb(43 52 47 / 4%);
+  --shadow-elevated: 0 10px 28px rgb(43 52 47 / 9%), 0 2px 6px rgb(43 52 47 / 4%);
+  --shadow-overlay: 0 18px 44px rgb(43 52 47 / 13%), 0 4px 12px rgb(43 52 47 / 5%);
+  --shadow-sm: var(--shadow-card);
+  --shadow-md: var(--shadow-elevated);
+  --shadow-lg: var(--shadow-overlay);
 }
 
 /* Map tokens into Tailwind's theme so utilities like bg-background work */
@@ -120,6 +152,9 @@
   --color-background: var(--background);
   --color-background-raised: var(--background-raised);
   --color-background-sunken: var(--background-sunken);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-hover: var(--surface-hover);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-foreground-faint: var(--foreground-faint);
@@ -127,6 +162,8 @@
   --color-border-strong: var(--border-strong);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-action: var(--primary-action);
+  --color-primary-action-foreground: var(--primary-action-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-success: var(--success);
@@ -158,12 +195,20 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-sans);
-  background:
-    radial-gradient(ellipse at 12% 0%, color-mix(in srgb, var(--secondary) 7%, transparent), transparent 34rem),
-    var(--background);
+  background: var(--page-background, var(--background));
   color: var(--foreground);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --page-background: var(--background);
+}
+[data-theme="light"] {
+  --page-background:
+    radial-gradient(ellipse at 8% 0%, color-mix(in srgb, var(--secondary) 3.2%, transparent), transparent 36rem),
+    radial-gradient(ellipse at 92% 10%, color-mix(in srgb, var(--primary-action) 3.5%, transparent), transparent 32rem),
+    var(--background);
 }
 
 html { scrollbar-gutter: stable; }
@@ -173,27 +218,72 @@ html { scrollbar-gutter: stable; }
   position: relative;
   border: 1px solid var(--border);
   border-radius: 1rem;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--background-raised) 96%, var(--secondary) 4%), var(--background-raised));
+  background: var(--surface-card);
   box-shadow: var(--shadow-sm);
   transition: border-color var(--duration-base) var(--ease-signal), box-shadow var(--duration-base) var(--ease-signal), transform var(--duration-base) var(--ease-signal);
 }
 .surface-card:hover {
   border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
   box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 .surface-card:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.glass-panel {
+  border: 1px solid color-mix(in srgb, var(--border-strong) 68%, transparent);
+  border-radius: 1rem;
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-elevated);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  padding: .3rem .65rem;
+  color: var(--foreground-muted);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  line-height: 1.35;
+}
+.app-shell { background: var(--page-background, var(--background)); }
+.theme-surface-transition,
+.theme-surface-transition * {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: ease;
+}
 .hero-grid {
   background-image: linear-gradient(color-mix(in srgb, var(--border) 27%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--border) 27%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: linear-gradient(to bottom, black, transparent 88%);
 }
+.hero-glow {
+  background: radial-gradient(circle, color-mix(in srgb, var(--secondary) 17%, transparent), transparent 68%);
+  filter: blur(24px);
+}
 .eyebrow-mark { display: inline-flex; align-items: center; gap: .65rem; }
 .eyebrow-mark::before { content: ""; width: 1.4rem; height: 1px; background: var(--primary); }
 
+[data-theme="light"] .hero-grid { opacity: .26; }
+[data-theme="light"] .hero-glow { opacity: .34; }
+[data-theme="light"] .surface-card:not(.glass-panel) { background: var(--surface-card); }
+[data-theme="light"] .surface-card:hover { border-color: color-mix(in srgb, var(--primary) 35%, var(--border)); }
+[data-theme="light"] header { box-shadow: var(--shadow-card); }
+
+.theme-surface-transition .surface-card,
+.theme-surface-transition button,
+.theme-surface-transition a[class*="transition-"] {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: 180ms;
+  transition-timing-function: ease;
+}
+
 ::selection {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--primary-action);
+  color: var(--primary-action-foreground);
 }
 
 img,
@@ -271,6 +361,8 @@ a {
   letter-spacing: 0.01em;
   color: var(--foreground-muted);
 }
+
+a:not([class*="text-"]):hover { color: var(--foreground); }
 
 /* --------------------------------------------------------------------------
    Schematic spine — the recurring structural device: a hairline rule with

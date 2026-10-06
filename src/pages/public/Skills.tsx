@@ -106,7 +106,7 @@ export default function Skills() {
               <p className="mt-3 text-sm text-foreground-muted">{group.description}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {group.technologies.map((technology) => (
-                  <li key={`${group.title}-${technology}`} className="text-meta rounded-sm border border-border px-2 py-1 text-foreground">
+                  <li key={`${group.title}-${technology}`} className="tech-badge">
                     {technology}
                   </li>
                 ))}
@@ -128,7 +128,7 @@ export default function Skills() {
                 <p className="mt-3 text-sm text-foreground-muted">{project.summary}</p>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {project.stack.map((item) => (
-                    <li key={`${project.title}-${item}`} className="text-meta rounded-sm border border-border px-2 py-1">
+                    <li key={`${project.title}-${item}`} className="tech-badge">
                       {item}
                     </li>
                   ))}

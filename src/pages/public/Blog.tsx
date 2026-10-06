@@ -40,7 +40,7 @@ export default function Blog() {
             <Link
               key={post.id}
               to={`/blog/${post.slug}`}
-              className="group overflow-hidden rounded-xl border border-border bg-background-raised transition-colors hover:border-primary"
+              className="surface-card group overflow-hidden"
             >
               {post.cover_image_path ? (
                 <img
@@ -70,7 +70,7 @@ export default function Blog() {
                 {post.tags.length ? (
                   <ul className="flex flex-wrap gap-2">
                     {post.tags.slice(0, 3).map((tag) => (
-                      <li key={tag.id} className="text-meta rounded-sm border border-border px-2 py-1">
+                      <li key={tag.id} className="tech-badge">
                         {tag.name}
                       </li>
                     ))}

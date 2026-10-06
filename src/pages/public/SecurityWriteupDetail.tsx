@@ -33,7 +33,7 @@ export default function SecurityWriteupDetail() {
           {writeup.tools?.length ? (
             <ul className="mt-4 flex flex-wrap gap-2">
               {writeup.tools.map((t) => (
-                <li key={t} className="text-meta rounded-sm border border-border px-2 py-1">{t}</li>
+                <li key={t} className="tech-badge">{t}</li>
               ))}
             </ul>
           ) : null}

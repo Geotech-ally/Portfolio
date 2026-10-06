@@ -32,7 +32,7 @@ export default function Resume() {
           href={downloadUrl}
           download
           onClick={() => trackEvent("resume_download")}
-          className="mb-8 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground print:hidden"
+          className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary-action px-5 py-3 text-sm font-medium text-primary-action-foreground shadow-sm transition-transform hover:-translate-y-0.5 print:hidden"
         >
           <Download size={16} /> Download PDF
         </a>

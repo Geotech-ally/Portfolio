@@ -42,7 +42,7 @@ export default function Experience() {
               {item.technologies?.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {item.technologies.map((t) => (
-                    <li key={t} className="text-meta rounded-sm border border-border px-2 py-1">
+                    <li key={t} className="tech-badge">
                       {t}
                     </li>
                   ))}

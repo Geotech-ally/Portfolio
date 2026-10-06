@@ -100,7 +100,7 @@ export default function BlogDetail() {
               {post.tags.length ? (
                 <ul className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <li key={tag.id} className="text-meta rounded-sm border border-border px-2 py-1">
+                    <li key={tag.id} className="tech-badge">
                       {tag.name}
                     </li>
                   ))}
@@ -110,7 +110,7 @@ export default function BlogDetail() {
           </header>
 
           {tableOfContents.length ? (
-            <aside className="mt-8 rounded-xl border border-border bg-background-raised p-5">
+            <aside className="surface-card mt-8 p-5">
               <p className="text-meta text-foreground-faint">Table of contents</p>
               <ul className="mt-3 space-y-2 text-body text-foreground-muted">
                 {tableOfContents.map((item, index) => (
@@ -152,7 +152,7 @@ export default function BlogDetail() {
               <h2 className="text-heading-md text-foreground">Related posts</h2>
               <div className="mt-4 grid gap-4 md:grid-cols-3">
                 {relatedPosts.map((entry) => (
-                  <Link key={entry.id} to={`/blog/${entry.slug}`} className="rounded-lg border border-border bg-background-raised p-4 hover:border-primary">
+                  <Link key={entry.id} to={`/blog/${entry.slug}`} className="surface-card p-4">
                     <p className="text-meta text-foreground-faint">{entry.category?.name ?? "Engineering"}</p>
                     <h3 className="mt-2 text-heading-sm text-foreground">{entry.title}</h3>
                   </Link>

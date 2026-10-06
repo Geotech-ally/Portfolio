@@ -7,9 +7,9 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground shadow-[0_6px_24px_color-mix(in_srgb,var(--primary)_22%,transparent)] hover:brightness-105 hover:shadow-[0_10px_30px_color-mix(in_srgb,var(--primary)_28%,transparent)]",
-        secondary: "bg-background-raised/80 text-foreground border border-border-strong hover:border-primary",
-        ghost: "text-foreground-muted hover:text-foreground hover:bg-background-raised",
+        primary: "bg-primary-action text-primary-action-foreground shadow-[0_6px_24px_color-mix(in_srgb,var(--primary-action)_22%,transparent)] hover:brightness-105 hover:shadow-[0_10px_30px_color-mix(in_srgb,var(--primary-action)_28%,transparent)]",
+        secondary: "bg-background-raised text-foreground border border-border-strong hover:border-primary",
+        ghost: "text-foreground hover:text-foreground hover:bg-surface-hover",
         outline: "border border-border-strong text-foreground hover:border-primary hover:text-primary",
       },
       size: {

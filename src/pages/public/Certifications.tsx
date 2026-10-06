@@ -25,7 +25,7 @@ export default function Certifications() {
             <div key={cert.id} className="surface-card p-6">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-foreground font-medium">{cert.name}</p>
-                <span className="text-meta rounded-sm border border-border px-2 py-1 text-foreground-faint">
+                <span className="tech-badge">
                   {cert.credential_url ? "Certification" : (cert.description?.toLowerCase().includes("learning") ? "Training" : "Course")}
                 </span>
               </div>

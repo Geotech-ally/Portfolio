@@ -72,7 +72,7 @@ export default function Home() {
     <>
       <section className="relative isolate overflow-hidden border-b border-border">
         <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-70" aria-hidden="true" />
-        <div className="pointer-events-none absolute -right-36 -top-36 -z-10 h-[34rem] w-[34rem] rounded-full bg-secondary/10 blur-3xl" aria-hidden="true" />
+        <div className="hero-glow pointer-events-none absolute -right-36 -top-36 -z-10 h-[34rem] w-[34rem] rounded-full" aria-hidden="true" />
         <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-32">
           <div className="fade-up">
             <p className="text-meta eyebrow-mark mb-6 text-foreground-muted">{profile?.full_name ?? "Geoffrey Akoo"} <span className="ml-1 inline-flex items-center gap-2 rounded-full border border-secondary/25 bg-secondary/10 px-3 py-1 font-sans text-xs tracking-normal text-secondary"><span className="h-1.5 w-1.5 rounded-full bg-secondary" />Developer · Security analyst</span></p>
@@ -93,7 +93,7 @@ export default function Home() {
             <p className="text-meta mt-8 flex items-center gap-2 text-foreground-faint"><span className="h-px w-8 bg-border-strong" />Full-stack development <span className="text-primary">/</span> Cybersecurity analysis</p>
           </div>
 
-          <div className="surface-card fade-up p-6 sm:p-8" style={{ animationDelay: "100ms" }}>
+          <div className="surface-card glass-panel fade-up p-6 sm:p-8" style={{ animationDelay: "100ms" }}>
             <div className="mb-7 flex items-center justify-between gap-4">
               <p className="text-meta text-foreground">Professional focus</p>
               <span className="font-mono text-xs text-foreground-faint">01 — 03</span>
@@ -174,7 +174,7 @@ export default function Home() {
 
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {project.project_technologies.slice(0, 3).map((technology) => (
-                    <li key={`${project.id}-${technology.technology}`} className="text-meta rounded-sm border border-border px-2 py-1">
+                    <li key={`${project.id}-${technology.technology}`} className="tech-badge">
                       {technology.technology}
                     </li>
                   ))}

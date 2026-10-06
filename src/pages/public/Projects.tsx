@@ -138,7 +138,7 @@ export default function Projects() {
                   <p className="text-meta text-foreground-faint">Main technologies</p>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {project.technologies.map((technology) => (
-                      <li key={`${project.id}-${technology}`} className="text-meta rounded-sm border border-border px-2 py-1">
+                      <li key={`${project.id}-${technology}`} className="tech-badge">
                         {technology}
                       </li>
                     ))}

@@ -150,7 +150,7 @@ export default function ProjectDetail() {
 
                 <div className="mt-6 flex flex-wrap gap-2">
                   {project.project_technologies.map((item) => (
-                    <span key={item.technology} className="text-meta rounded-sm border border-border px-2 py-1">
+                    <span key={item.technology} className="tech-badge">
                       {item.technology}
                     </span>
                   ))}
@@ -248,11 +248,11 @@ export default function ProjectDetail() {
                 <h2 className="text-heading-md text-foreground">5. Technology stack</h2>
                 <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {techGroups.map(([group, items]) => (
-                    <div key={group} className="rounded-xl border border-border bg-background-raised p-4">
+                    <div key={group} className="surface-card p-4">
                       <p className="text-meta text-foreground-faint">{group}</p>
                       <ul className="mt-3 flex flex-wrap gap-2">
                         {items.map((item) => (
-                          <li key={item} className="text-meta rounded-sm border border-border px-2 py-1">
+                          <li key={item} className="tech-badge">
                             {item}
                           </li>
                         ))}
@@ -265,7 +265,7 @@ export default function ProjectDetail() {
 
             <section>
               <h2 className="text-heading-md text-foreground">6. Architecture</h2>
-              <div className="mt-4 rounded-xl border border-border bg-background-raised p-5">
+              <div className="surface-card mt-4 p-5">
                 <div className="flex flex-col gap-3 text-body text-foreground-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
                   <span className="rounded-md border border-border px-3 py-2">Frontend</span>
                   <span aria-hidden="true">↓</span>
@@ -286,7 +286,7 @@ export default function ProjectDetail() {
 
             <section>
               <h2 className="text-heading-md text-foreground">8. Challenges & engineering decisions</h2>
-              <div className="mt-3 rounded-xl border border-border bg-background-raised p-5">
+              <div className="surface-card mt-3 p-5">
                 <p className="text-body text-foreground-muted">{profile?.challenge ?? "Specific challenge and decision history for this project has not been fully documented yet. This section will be expanded as verified project detail becomes available."}</p>
               </div>
             </section>

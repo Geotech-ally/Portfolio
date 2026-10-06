@@ -60,7 +60,7 @@ export default function Contact() {
       />
 
       <div className="max-w-4xl space-y-6">
-        <div className="rounded-2xl border border-border bg-background-raised p-6 md:p-8">
+        <div className="surface-card p-6 md:p-8">
           <p className="text-body text-foreground-muted">
             I’m available for practical engineering work, technical collaboration, and professional conversations around software systems, secure product design, and platform development.
           </p>
@@ -89,7 +89,7 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-border bg-background-raised p-6 md:p-8">
+        <div className="surface-card p-6 md:p-8">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background text-foreground">
               <MapPin size={18} />
