@@ -28,7 +28,7 @@ export function PageSkeleton() {
 
 export function EmptyState({ title, description }: { title: string; description?: string }) {
   return (
-    <div className="flex flex-col items-start gap-3 rounded-lg border border-dashed border-border p-10 text-foreground-muted">
+    <div className="flex flex-col items-start gap-3 rounded-lg border border-dashed border-border bg-surface-soft p-10 text-foreground-muted">
       <Inbox size={22} aria-hidden />
       <p className="text-foreground">{title}</p>
       {description ? <p className="text-sm">{description}</p> : null}

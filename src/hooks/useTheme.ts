@@ -25,7 +25,7 @@ export function useTheme() {
   useLayoutEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     window.localStorage.setItem(STORAGE_KEY, theme);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#f7f8f6" : "#0c1115");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#f4f3ef" : "#0c1115");
   }, [theme]);
 
   const toggleTheme = useCallback(() => {

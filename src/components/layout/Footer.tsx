@@ -51,7 +51,7 @@ export function Footer() {
   ].filter((item) => item.href) as Array<{ label: string; href: string; Icon: any }>;
 
   return (
-    <footer className="site-footer border-t border-border-strong">
+    <footer className="site-footer theme-surface-transition border-t border-border-strong">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <p className="text-heading-md text-foreground">{profile?.full_name ?? "Geoffrey Akoo"}</p>
@@ -98,18 +98,18 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={label}
-                className="inline-flex items-center justify-center rounded-md border border-border p-2 text-foreground-muted transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
               >
-                {typeof Icon === "function" && Icon !== Mail ? <Icon width={16} height={16} /> : <ArrowUpRight size={16} />}
+                {typeof Icon === "function" && Icon !== Mail ? <Icon width={18} height={18} /> : <ArrowUpRight size={18} />}
               </a>
             ))}
             {profile?.email ? (
               <a
                 href={`mailto:${profile.email}`}
                 aria-label="Email"
-                className="inline-flex items-center justify-center rounded-md border border-border p-2 text-foreground-muted transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
               >
-                <Mail size={16} />
+                <Mail size={18} />
               </a>
             ) : null}
             {profile?.location ? (
@@ -118,9 +118,9 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="Location"
-                className="inline-flex items-center justify-center rounded-md border border-border p-2 text-foreground-muted transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground-muted transition-colors hover:border-primary hover:text-primary"
               >
-                <MapPin size={16} />
+                <MapPin size={18} />
               </a>
             ) : null}
           </div>

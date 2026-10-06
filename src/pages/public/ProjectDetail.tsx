@@ -182,7 +182,7 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4 rounded-xl border border-border bg-background p-4">
+              <div className="surface-inset flex flex-col gap-4 rounded-xl p-4">
                 <div>
                   <p className="text-meta text-foreground-faint">Status</p>
                   <p className="mt-1 text-body text-foreground">{project.status}</p>
@@ -199,7 +199,7 @@ export default function ProjectDetail() {
             </div>
 
             {project.cover_image_path ? (
-              <div className="border-t border-border bg-background">
+              <div className="border-t border-border bg-surface-inset">
                 <img
                   src={getPublicUrl(STORAGE_BUCKETS.projectImages, project.cover_image_path)}
                   alt={`${project.title} cover`}
@@ -311,7 +311,7 @@ export default function ProjectDetail() {
                 <h2 className="text-heading-md text-foreground">12. Related projects</h2>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {relatedProjects.map((entry) => (
-                    <Link key={entry.slug} to={`/projects/${entry.slug}`} className="rounded-md border border-border px-4 py-2 text-sm hover:border-primary">
+                    <Link key={entry.slug} to={`/projects/${entry.slug}`} className="rounded-md border border-border bg-surface-raised px-4 py-2 text-sm shadow-sm transition-colors hover:border-primary hover:bg-surface-hover">
                       {entry.title}
                     </Link>
                   ))}

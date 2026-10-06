@@ -38,7 +38,6 @@
 :root {
   color-scheme: dark;
 
-  /* Core surfaces */
   --background: #0c1115;
   --background-raised: #141c22;
   --background-sunken: #080c10;
@@ -50,8 +49,8 @@
   --surface-inset: #0b1115;
   --surface-glass: rgb(20 28 34 / 78%);
   --surface-hover: #1a242b;
+  --surface-footer: var(--surface-raised);
 
-  /* Text */
   --foreground: #e7e7e2;
   --foreground-muted: #9a9fa6;
   --foreground-faint: #5c6169;
@@ -59,34 +58,28 @@
   --text-secondary: var(--foreground-muted);
   --text-muted: var(--foreground-faint);
 
-  /* Borders / dividers (hairlines, not shadows) */
   --border: #27323a;
   --border-strong: #3a4851;
 
-  /* Brand */
-  --primary: #e1a34a;         /* signal — amber dial */
+  --primary: #e1a34a;
   --brand-primary: var(--primary);
   --primary-foreground: #14171b;
   --primary-action: #e1a34a;
   --primary-action-foreground: #14171b;
-  --secondary: #43c6b4;       /* current — cold teal, used for security context */
+  --secondary: #43c6b4;
   --brand-secondary: var(--secondary);
   --secondary-foreground: #0a0c0f;
 
-  /* Status */
   --success: #4fae72;
   --warning: #e1a34a;
   --danger: #e2564f;
   --info: #43c6b4;
 
-  /* Card (used sparingly — see component notes) */
   --card: #141c22;
   --card-foreground: #e7e7e2;
 
-  /* Ring / focus */
   --ring: #e1a34a;
 
-  /* Shadows — restrained, used only for true elevation (menus, dialogs) */
   --shadow-card: 0 2px 10px rgb(0 0 0 / 18%);
   --shadow-elevated: 0 10px 28px rgb(0 0 0 / 28%);
   --shadow-overlay: 0 18px 44px rgb(0 0 0 / 36%);
@@ -104,53 +97,54 @@
   color-scheme: light;
 
   --background: #f4f3ef;
-  --background-raised: #fffefa;
-  --background-sunken: #ebeae4;
-  --surface-section: #f0efe9;
+  --background-raised: #ffffff;
+  --background-sunken: #e3e2db;
+  --surface-section: #eceae3;
   --surface: #fffefa;
-  --surface-raised: var(--background-raised);
+  --surface-raised: #ffffff;
   --surface-card: #ffffff;
-  --surface-soft: #f0efe9;
-  --surface-inset: #f3f2ed;
-  --surface-glass: rgb(255 254 250 / 96%);
-  --surface-hover: #f1f0e9;
+  --surface-soft: #e8e6df;
+  --surface-inset: #f0efe9;
+  --surface-glass: rgb(255 255 255 / 88%);
+  --surface-hover: #ddd9d1;
+  --surface-footer: #f7f6f1;
 
-  --foreground: #202522;
-  --foreground-muted: #4c5651;
+  --foreground: #1f2320;
+  --foreground-muted: #404842;
   --foreground-faint: #59635e;
   --text-primary: var(--foreground);
   --text-secondary: var(--foreground-muted);
   --text-muted: var(--foreground-faint);
 
-  --border: #d9d9d1;
-  --border-strong: #bfc3ba;
+  --border: #d2d3cc;
+  --border-strong: #b6b9b2;
 
-  --primary: #925b12;
+  --primary: #7a4a0e;
   --brand-primary: var(--primary);
   --primary-foreground: #1f211d;
-  --primary-action: #e4aa4b;
-  --primary-action-foreground: #282114;
-  --secondary: #176f60;
+  --primary-action: #c98b2e;
+  --primary-action-foreground: #1a160e;
+  --secondary: #0e5d50;
   --brand-secondary: var(--secondary);
   --secondary-foreground: #ffffff;
 
-  --success: #267242;
-  --warning: #925b12;
-  --danger: #c8433c;
-  --info: #176f60;
+  --success: #1f5c35;
+  --warning: #7a4a0e;
+  --danger: #a83530;
+  --info: #0e5d50;
 
   --card: #ffffff;
   --card-foreground: #14171b;
 
-  --ring: #925b12;
+  --ring: #7a4a0e;
 
-  --shadow-card: 0 2px 8px rgb(37 41 36 / 6%), 0 1px 2px rgb(37 41 36 / 4%);
-  --shadow-elevated: 0 10px 26px rgb(37 41 36 / 10%), 0 2px 6px rgb(37 41 36 / 4%);
-  --shadow-overlay: 0 18px 40px rgb(37 41 36 / 14%), 0 4px 12px rgb(37 41 36 / 5%);
+  --shadow-card: 0 2px 8px rgb(37 41 36 / 8%), 0 1px 2px rgb(37 41 36 / 4%);
+  --shadow-elevated: 0 10px 28px rgb(37 41 36 / 12%), 0 2px 8px rgb(37 41 36 / 5%);
+  --shadow-overlay: 0 18px 44px rgb(37 41 36 / 16%), 0 4px 12px rgb(37 41 36 / 6%);
   --shadow-sm: var(--shadow-card);
   --shadow-md: var(--shadow-elevated);
   --shadow-lg: var(--shadow-overlay);
-  --footer-shadow: rgb(37 41 36 / 7%);
+  --footer-shadow: rgb(37 41 36 / 10%);
 }
 
 /* Map tokens into Tailwind's theme so utilities like bg-background work */
@@ -165,6 +159,7 @@
   --color-surface-soft: var(--surface-soft);
   --color-surface-inset: var(--surface-inset);
   --color-surface-hover: var(--surface-hover);
+  --color-surface-footer: var(--surface-footer);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-foreground-faint: var(--foreground-faint);
@@ -266,8 +261,8 @@ html { scrollbar-gutter: stable; }
 .app-shell { background: var(--page-background, var(--background)); }
 .app-shell main > section:nth-of-type(even) { background-color: var(--surface-section); }
 .site-footer {
-  background: var(--surface-raised);
-  box-shadow: 0 -4px 16px var(--footer-shadow);
+  background: var(--surface-footer);
+  box-shadow: 0 -6px 24px var(--footer-shadow);
 }
 .theme-surface-transition,
 .theme-surface-transition * {
@@ -287,8 +282,8 @@ html { scrollbar-gutter: stable; }
 .eyebrow-mark { display: inline-flex; align-items: center; gap: .65rem; }
 .eyebrow-mark::before { content: ""; width: 1.4rem; height: 1px; background: var(--primary); }
 
-[data-theme="light"] .hero-grid { opacity: .18; }
-[data-theme="light"] .hero-glow { opacity: .22; }
+[data-theme="light"] .hero-grid { opacity: .12; }
+[data-theme="light"] .hero-glow { opacity: .15; }
 [data-theme="light"] .surface-card:hover { border-color: color-mix(in srgb, var(--primary) 35%, var(--border)); }
 header.site-header { background: var(--surface-raised); box-shadow: var(--shadow-card); }
 

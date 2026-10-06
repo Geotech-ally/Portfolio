@@ -12,7 +12,7 @@ interface SectionProps {
 
 export function Section({ children, className, id, divider = false }: SectionProps) {
   return (
-    <section id={id} className={cn("py-16 sm:py-24 lg:py-28", divider && "schematic-rule")}>
+    <section id={id} className={cn("pt-24 pb-16 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-28", divider && "schematic-rule")}>
       <Container className={className}>{children}</Container>
     </section>
   );

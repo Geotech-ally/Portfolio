@@ -102,7 +102,7 @@ export default function Projects() {
         isEmpty={!data || data.length === 0}
         emptyTitle="Projects will appear here once published from the admin dashboard."
       >
-        <div className="grid gap-5 pb-8 md:grid-cols-2 lg:gap-6">
+        <div className="grid gap-5 pb-12 sm:pb-16 md:grid-cols-2 lg:gap-6">
           {projects.map((project) => {
             const projectLink = project.slug ? `/projects/${project.slug}` : "/projects";
             const isFallbackProject = !data || data.length === 0;
