@@ -128,6 +128,11 @@ export type BlogTag = {
   slug: string;
 }
 
+export type BlogPostTag = {
+  post_id: string;
+  tag_id: string;
+}
+
 export type BlogPost = {
   id: string;
   title: string;
@@ -242,6 +247,7 @@ export type Database = {
       blog_categories: Table<BlogCategory>;
       blog_tags: Table<BlogTag>;
       blog_posts: Table<BlogPost>;
+      blog_post_tags: Table<BlogPostTag>;
       security_writeups: Table<SecurityWriteup>;
       contact_messages: Table<ContactMessage>;
       newsletter_subscribers: Table<NewsletterSubscriber>;

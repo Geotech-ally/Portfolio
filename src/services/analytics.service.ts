@@ -16,18 +16,31 @@ export type AnalyticsEventName =
  * allows anonymous INSERT only; SELECT is admin-only.
  */
 export function trackEvent(event: AnalyticsEventName, metadata?: Record<string, unknown>): void {
-  void supabase
-    .from("analytics_events")
-    .insert({
-      event_name: event,
-      path: typeof window !== "undefined" ? window.location.pathname : null,
-      metadata: metadata ?? null,
-    })
-    .then(({ error }) => {
-      if (error) {
-        // Analytics must never break the app or surface to the user.
+  try {
+    const insertRequest = supabase
+      .from("analytics_events")
+      .insert({
+        event_name: event,
+        path: typeof window !== "undefined" ? window.location.pathname : null,
+        metadata: metadata ?? null,
+      });
+
+    void Promise.resolve(insertRequest)
+      .then(({ error }) => {
+        if (error) {
+          // Analytics must never break the app or surface to the user.
+          // eslint-disable-next-line no-console
+          console.debug("analytics event failed", error.message);
+        }
+      })
+      .catch((error: unknown) => {
+        // Also swallow synchronous-style client failures surfaced by promise implementations.
         // eslint-disable-next-line no-console
-        console.debug("analytics event failed", error.message);
-      }
-    });
+        console.debug("analytics event failed", error);
+      });
+  } catch (error) {
+    // Misconfiguration must not prevent content pages from rendering.
+    // eslint-disable-next-line no-console
+    console.debug("analytics event failed", error);
+  }
 }
