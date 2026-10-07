@@ -7,7 +7,17 @@ async function countRows(table: "projects" | "blog_posts" | "security_writeups" 
     ? await supabase.from("blog_posts").select("*", { count: "exact", head: true }).eq("content_status", "published")
     : await supabase.from(table).select("*", { count: "exact", head: true });
   const { count, error } = result;
-  if (error) throw error;
+  if (error) {
+    if (import.meta.env.DEV) {
+      console.error(`[Admin dashboard] count query failed for ${table}`, {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+      });
+    }
+    throw error;
+  }
   return count ?? 0;
 }
 

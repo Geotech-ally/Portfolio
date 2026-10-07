@@ -28,7 +28,7 @@ your admin account — is in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 | `npm run dev` | Dev server |
 | `npm run build` | Typecheck (`tsc -b`) then production build |
 | `npm run preview` | Serve the production build |
-| `npm run lint` | ESLint |
+| `npm run lint` | ESLint |  
 
 ## Structure
 

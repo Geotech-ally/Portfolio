@@ -2,6 +2,7 @@ import { Navigate, Outlet, Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/auth";
 import { Container } from "@/components/layout/Container";
+import { ErrorState } from "@/components/shared/AsyncStates";
 
 const ADMIN_LINKS = [
   { to: "/admin", label: "Overview" },
@@ -18,9 +19,24 @@ const ADMIN_LINKS = [
  * RLS, which independently re-checks profiles.role = 'admin' server-side.
  */
 export function AdminLayout() {
-  const { isLoading, isAuthenticated, profile } = useAuth();
+  const { isLoading, isAuthenticated, profile, error: authError, isAvailable } = useAuth();
 
-  if (isLoading) return null;
+  if (isLoading) return <p className="p-8 text-sm text-foreground-muted" role="status">Checking admin session…</p>;
+  if (!isAvailable || authError) {
+    return (
+      <main className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-5 py-16">
+        <h1 className="text-heading-md mb-4 text-foreground">Admin access unavailable</h1>
+        <ErrorState message="We can’t verify admin access right now. Please try again later." />
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          className="mt-4 self-start rounded-md border border-border-strong bg-surface-raised px-4 py-2 text-sm hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Try again
+        </button>
+      </main>
+    );
+  }
   if (!isAuthenticated) return <Navigate to="/admin/login" replace />;
   if (!profile || (profile.role !== "admin" && profile.role !== "editor")) {
     return <Navigate to="/admin/login" replace />;
@@ -39,7 +55,9 @@ export function AdminLayout() {
         </nav>
         <button
           type="button"
-          onClick={() => signOut()}
+          onClick={() => void signOut().catch((error: unknown) => {
+            if (import.meta.env.DEV) console.error("Admin sign-out failed", error);
+          })}
           className="mt-8 text-sm text-foreground-muted hover:text-foreground"
         >
           Sign out

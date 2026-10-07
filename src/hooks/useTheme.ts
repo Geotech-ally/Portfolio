@@ -6,8 +6,12 @@ const STORAGE_KEY = "portfolio-theme";
 
 function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "dark";
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "dark" || stored === "light") return stored;
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    if (stored === "dark" || stored === "light") return stored;
+  } catch {
+    // Theme persistence is optional; a storage restriction should not break page startup.
+  }
 
   const mediaQuery = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: light)") : null;
   return mediaQuery?.matches ? "light" : "dark";
@@ -24,7 +28,13 @@ export function useTheme() {
 
   useLayoutEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(STORAGE_KEY, theme);
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, theme);
+      } catch {
+        // Keep the in-memory theme even when browser storage is unavailable.
+      }
+    }
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#f4f3ef" : "#0c1115");
   }, [theme]);
 

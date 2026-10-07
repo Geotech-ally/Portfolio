@@ -139,6 +139,12 @@ Supabase too. Vite embeds `VITE_*` values during the build, so save the values
 and create a new deployment after adding or changing them. Never put the
 Supabase service-role key in a frontend environment variable; it bypasses RLS.
 
+For local development, the browser console exposes safe diagnostics only in
+development mode: `window.__portfolioDiagnostics.getSupabaseConfigurationStatus()`
+checks configuration without returning values, and
+`await window.__portfolioDiagnostics.diagnoseSupabaseConnection()` runs a
+read-only check against `profiles`. These helpers are not attached in production.
+
 ## 9. Security headers
 
 Not configured in this repo, because they belong to the host. Add at minimum

@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { signInWithPassword } from "@/lib/auth";
 import { useAuth } from "@/hooks/useAuth";
+import { ErrorState } from "@/components/shared/AsyncStates";
 
 const loginSchema = z.object({
   email: z.string().trim().email("Enter a valid email"),
@@ -22,7 +23,7 @@ type LoginInput = z.infer<typeof loginSchema>;
  */
 export default function AdminLogin() {
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading, profile } = useAuth();
+  const { isAuthenticated, isLoading, profile, error: authError, isAvailable } = useAuth();
   const [formError, setFormError] = useState<string | null>(null);
   const {
     register,
@@ -34,15 +35,44 @@ export default function AdminLogin() {
     return <Navigate to="/admin" replace />;
   }
 
+  if (!isAvailable || authError) {
+    return (
+      <Container className="flex min-h-screen items-center justify-center py-16">
+        <div className="w-full max-w-lg">
+          <h1 className="text-heading-md mb-4 text-foreground">Admin sign-in unavailable</h1>
+          <ErrorState message="We can’t verify admin access right now. Please try again later." />
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="mt-4 rounded-md border border-border-strong bg-surface-raised px-4 py-2 text-sm hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            Try again
+          </button>
+        </div>
+      </Container>
+    );
+  }
+
   async function onSubmit(values: LoginInput) {
     setFormError(null);
     try {
       await signInWithPassword(values.email, values.password);
       navigate("/admin", { replace: true });
-    } catch {
+    } catch (error) {
       // Never surface whether the email exists or the password was wrong —
       // a generic message avoids account enumeration.
-      setFormError("Invalid email or password.");
+      if (import.meta.env.DEV) {
+        const details = error && typeof error === "object"
+          ? error as { name?: unknown; message?: unknown; code?: unknown; status?: unknown }
+          : { message: String(error) };
+        console.error("[Admin login] sign-in failed", {
+          name: details.name,
+          message: details.message,
+          code: details.code,
+          status: details.status,
+        });
+      }
+      setFormError("Sign-in could not be completed. Check your details and try again.");
     }
   }
 

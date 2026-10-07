@@ -30,7 +30,18 @@ export function RouterErrorBoundary() {
   const error = useRouteError();
 
   useEffect(() => {
-    if (import.meta.env.DEV) console.error("Application route error", error);
+    if (!import.meta.env.DEV) return;
+    const details = error && typeof error === "object"
+      ? error as { name?: unknown; message?: unknown; stack?: unknown; status?: unknown; statusText?: unknown; internal?: unknown }
+      : { message: String(error) };
+    console.error("[React Router] route error", {
+      name: details.name,
+      message: details.message,
+      stack: details.stack,
+      status: details.status,
+      statusText: details.statusText,
+      internal: details.internal,
+    });
   }, [error]);
 
   return <ApplicationErrorPage />;
@@ -47,17 +58,19 @@ export class AppErrorBoundary extends React.Component<{ children: React.ReactNod
   }
 
   componentDidCatch(error: Error) {
-    if (import.meta.env.DEV) console.error("Application render error", error);
+    if (import.meta.env.DEV) {
+      console.error("[React] render error", {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      });
+    }
   }
 
   render() {
     if (this.state.hasError) {
-      const isDev = import.meta.env.DEV;
       return (
-        <div>
-          <ApplicationErrorPage />
-          {isDev && this.state.error ? <pre className="mx-auto max-w-xl overflow-auto whitespace-pre-wrap p-4 text-xs text-danger">{String(this.state.error)}</pre> : null}
-        </div>
+        <ApplicationErrorPage />
       );
     }
 
